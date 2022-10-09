@@ -1,9 +1,5 @@
 package pruebasJose;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class PruebasLocas {
 
     /*
@@ -25,25 +21,32 @@ public class PruebasLocas {
     }
 
     public  String validarHexadecimal(String cadena){
-        String validando = "NO VALIDO";
-        boolean aux = false;
+        String  valido  = "NO VALIDO :((";
+        boolean validarHex = false;
 
-        if(cadena.toLowerCase().charAt(0)=='0' && cadena.toLowerCase().charAt(cadena.length()-1)=='h'){
-            aux = true;
-            aux = esPar(cadena.length() - 2);
+        if(cadena.charAt(0) == '0'){
+            for (int j = 0; j < cadena.length(); j++) {
+                if (cadena.charAt(j) == '1' || cadena.charAt(j) == '2' || cadena.charAt(j) == '3' || cadena.charAt(j) == '4' || cadena.charAt(j) == '5' || cadena.charAt(j) == '6' || cadena.charAt(j) == '7' || cadena.charAt(j) == '8' || cadena.charAt(j) == '9' || cadena.charAt(j) == '0' || cadena.charAt(j) == 'A' || cadena.charAt(j) == 'B' || cadena.charAt(j) == 'C' || cadena.charAt(j) == 'D' || cadena.charAt(j) == 'E' || cadena.charAt(j) == 'F' || cadena.charAt(j) == 'H' || cadena.charAt(j)=='h' || cadena.charAt(j) == 'a' || cadena.charAt(j) == 'b' || cadena.charAt(j) == 'c' || cadena.charAt(j) == 'd' || cadena.charAt(j) == 'e' || cadena.charAt(j) == 'f') {
+                    validarHex = esPar(cadena.length()-2);
+                } else {
+                    validarHex = false;
+                    break;
+                }
+
+            } // Fin for
         }
 
-        if(aux){
-            validando = "VALIDO :))";
+        if(validarHex){
+            return valido = "VALIDO :))";
         }
 
-        return validando;
+        return  valido;
     }
 
 
 
     public static void main(String[] args) {
-        String prueba = "0FFH";
+        String prueba = "02H";
         PruebasLocas OBJ = new PruebasLocas();
         System.out.println(OBJ.validarHexadecimal(prueba));
     }
