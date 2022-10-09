@@ -3,23 +3,33 @@ package pruebasJose;
 public class PruebasLocas {
 
     /*
+        --------------------- HEXADECIMAL
+        Nota: recordar que tanto 0 como H no se cuentan
+        ya que solo es un requisito. Es por ello que
+        al la cadena se le resta 2.
+        cad = 0FFH
+        cad.length()-2  --> FF
+        Es por ello que uso el metodo esPar()
+
+        --------------------- BINARIO
+        En este caso solo la B al final de la cadena
+        es un requisito entonces solo le restamos 1
+        al tamanio de la cadena y comprobamos que sea
+        par.
+     */
+    public static boolean esPar(int numero){
+        return numero % 2 == 0;
+    }
+
+
+    /*
         Comprobar que cualquier num HEX, tenga:
         0    al principio
         h    al final
         Y siempre debe ser par, ejemplo:
         0H = CORRECTO
         0FH= INCORRECTO
-
-        Nota: recordar que tanto 0 como H no se cuentan
-        ya que solo es un requisito. Es por ello que
-        al la cadena se le resta 2.
-        cad = 0FFH
-        cad.length()-2  --> FF
-     */
-    public static boolean esPar(int numero){
-        return numero % 2 == 0;
-    }
-
+    */
     public  String validarHexadecimal(String cadena){
         String  valido  = "NO VALIDO :((";
         boolean validarHex = false;
@@ -37,18 +47,47 @@ public class PruebasLocas {
         }
 
         if(validarHex){
-            return valido = "VALIDO :))";
+             valido = " HEX VALIDO :))";
         }
 
         return  valido;
     }
 
 
+    public String validarBinario(String cadena){
+        String valido = "NO VALIDO";
+        boolean validarBinario = false;
+
+        for (int i = 0; i < cadena.length(); i++) {
+            if(cadena.charAt(i) == '0' || cadena.charAt(i) == '1' || cadena.charAt(i) =='B' || cadena.charAt(i) == 'b'){
+                validarBinario = esPar(cadena.length()-1);
+            }else {
+                validarBinario = false;
+                break;
+            }
+
+        } // Fin for
+
+        if(validarBinario){
+            valido  = "BIN VALIDO :))";
+        }
+
+        return  valido;
+    }
+
 
     public static void main(String[] args) {
-        String prueba = "02H";
-        PruebasLocas OBJ = new PruebasLocas();
-        System.out.println(OBJ.validarHexadecimal(prueba));
+
+        PruebasLocas test = new PruebasLocas();
+        // Prueba para validar un numero HEX
+        String hexadecimal = "0F2H";
+        System.out.println(test.validarHexadecimal(hexadecimal));
+
+
+        // Prueba para validar un numero BINARIO
+        String binario = "1B";
+        System.out.println(test.validarBinario(binario));
+
     }
 
 }
