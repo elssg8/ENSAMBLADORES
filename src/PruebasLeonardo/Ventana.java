@@ -20,7 +20,9 @@ public class Ventana extends JFrame{
     private void iniciarComponentes(){
         panel = new JPanel(); // Creacion de un panel
         panel.setLayout(null); // Desactivamos los diseños predeterminados del panel
+        panel.setSize(900,900);
         this.getContentPane().add(panel); // Agrega el panel a la ventana
+
 
         AreaIdentificacion();
         etiquetaAreaIden();
@@ -52,7 +54,11 @@ public class Ventana extends JFrame{
         ActionListener accionBoton = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                File archivoSeleccionado;
+                JFileChooser seleccionarArchivo;
+                seleccionarArchivo = new JFileChooser();
+                seleccionarArchivo.showOpenDialog(null);
+                archivoSeleccionado = seleccionarArchivo.getSelectedFile();
             }
         };
         btnSelectFile.addActionListener(accionBoton);
