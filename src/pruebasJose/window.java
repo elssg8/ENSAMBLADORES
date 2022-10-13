@@ -66,6 +66,12 @@ public class window extends JFrame {
         initTextAreaArchivoASM();
         initTextAreaSeparacion();
         initTextAreaIndentifiacion();
+        btnSelectFile();
+        btnSeparar();
+        btnSiguienteSeparar();
+        btnAtrasSeparar();
+        btnPaginaAnterior();
+        btnPaginaSiguiente();
   
     }
 
@@ -104,8 +110,8 @@ public class window extends JFrame {
         panel.add(lblASM);
         panel.add(lblSeparar);
         panel.add(lblIden);
-        panel.add(lblPagActual);
-        panel.add(lblPagE);
+        panel.add(lblPagActual); // CHECAR
+        panel.add(lblPagE); // CHECAR
     }
 
     public void initTextAreaArchivoASM() {
@@ -186,7 +192,7 @@ public class window extends JFrame {
 
     private void btnSelectFile(){
         JButton btnSelectFile = new JButton("Seleccionar archivo");
-        btnSelectFile.setBounds(50,650,150,30);
+        btnSelectFile.setBounds(50,400,150,30);
         panel.add(btnSelectFile);
 
         // Agregamos el evento que va a abrir la ventana de selección de archivos
@@ -224,7 +230,7 @@ public class window extends JFrame {
 
     private void btnSeparar(){
         JButton btn_separar = new JButton("Separar");
-        btn_separar.setBounds(500,650,150,30);
+        btn_separar.setBounds(500,400,150,30);
         panel.add(btn_separar);
 
         ActionListener accionBoton = new ActionListener() {
@@ -242,13 +248,13 @@ public class window extends JFrame {
 
     private void btnSiguienteSeparar() {
         JButton btn_siguiente = new JButton("Pagina Siguente");
-        btn_siguiente.setBounds(750,750,150,30);
+        btn_siguiente.setBounds(750,400,150,30);
         panel.add(btn_siguiente);
     }
 
     private void btnAtrasSeparar(){
         JButton btn_atras = new JButton("Pagina Anterior");
-        btn_atras.setBounds(500,750,150,30);
+        btn_atras.setBounds(500,400,150,30);
         panel.add(btn_atras);
 
 
@@ -256,7 +262,7 @@ public class window extends JFrame {
 
     public void btnPaginaAnterior(){
         JButton btn_pagina_anterior = new JButton("Pagina Anterior");
-        btn_pagina_anterior.setBounds(50,750,150,30);
+        btn_pagina_anterior.setBounds(50,400,150,30);
         panel.add(btn_pagina_anterior);
 
         ActionListener btn_anterior = new ActionListener() {
@@ -274,7 +280,7 @@ public class window extends JFrame {
 
     public void btnPaginaSiguiente(){
         JButton btn_pagina_siguiente = new JButton("Pagina Siguiente");
-        btn_pagina_siguiente.setBounds(250,750,150,30);
+        btn_pagina_siguiente.setBounds(250,400,150,30);
         panel.add(btn_pagina_siguiente);
 
         ActionListener btn_siguiente = new ActionListener() {
