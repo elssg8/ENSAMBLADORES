@@ -9,14 +9,20 @@ import java.io.*;
 public class Ventana extends JFrame{
     public JPanel panel;
     private static JTextArea txtA_archivoASM;
+     static JTextArea txt_area_separacion;
+     static JTextArea txt_area_identificacion;
+     static JLabel etiqueta_pagina_actual;
+    static JLabel etiqueta_pagina_E;
     private String nombre_archivo;
     private String ruta_archivo;
     private String archivo;
-    private int total_paginas;
-    private int pagina_actual;
-    private int tamaño;
+    private static int total_paginas;
+    private static int pagina_actual;
+     int tamaño;
     private byte imprimir = 15;
     private boolean abrio_correcto = false;
+
+    Separar clase_separar = new Separar(this);
     public Ventana(){
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); // Establece la ventana completa
         //this.setSize(500,500); // Establece el tamaño de la ventana
@@ -35,34 +41,59 @@ public class Ventana extends JFrame{
 
 
         AreaIdentificacion();
-        etiquetaAreaIden();
         AreaSeparacion();
-        etiquetaAreaSep();
-        Btn_Select_File();
+        btnSelectFile();
+        btnSeparar();
+        btnPaginaAnterior();
+        btnPaginaSiguiente();
+        btnAtrasSeparar();
+        btnSiguienteSeparar();
         AreaArchivoASM();
-        etiquetaAreaAASM();
+        etiquetas();
     }
 
-    private void etiquetaAreaAASM(){
+    private void etiquetas(){
         JLabel etiquetaAASM = new JLabel();
         etiquetaAASM.setText("ARCHIVO ASM ORIGINAL");
         etiquetaAASM.setBounds(150,10,150,50);
         panel.add(etiquetaAASM);
+
+        JLabel etiquetaASep = new JLabel();
+        etiquetaASep.setText("SEPARACION DE ELEMENTOS");
+        etiquetaASep.setBounds(690,10,180,50);
+        panel.add(etiquetaASep);
+
+        JLabel etiquetaAIden = new JLabel();
+        etiquetaAIden.setText("IDENTIFICACION DE ELEMENTOS");
+        etiquetaAIden.setBounds(1230,10,200,50);
+        panel.add(etiquetaAIden);
+
+        etiqueta_pagina_actual = new JLabel();
+        etiqueta_pagina_actual.setBounds(450,650,150,30);
+        panel.add(etiqueta_pagina_actual);
+
+        etiqueta_pagina_E = new JLabel();
+        etiqueta_pagina_E.setBounds(850,650,150,30);
+        panel.add(etiqueta_pagina_E);
+
     }
-    private void AreaArchivoASM (){
-        txtA_archivoASM= new JTextArea();
-        txtA_archivoASM.setBounds(20,80,400,500);
-        txtA_archivoASM.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 18));
-        panel.add(txtA_archivoASM);
-    }
+
 
     public static void mostrarASM(String dato){//Metodo que nos sirve para ser utilizado en otras clases y mostrar texto en el textArea
-        txtA_archivoASM.append(dato);
+        txtA_archivoASM.setText(dato);
     }
 
-    private void Btn_Select_File (){
+    public static void mostrarSeparado(String dato){//Metodo que nos sirve para ser utilizado en otras clases y mostrar texto en el textArea
+        txtA_archivoASM.setText(dato);
+    }
+
+    public static void mostrarLexema(String dato){//Metodo que nos sirve para ser utilizado en otras clases y mostrar texto en el textArea
+        txtA_archivoASM.setText(dato);
+    }
+
+    private void btnSelectFile(){
         JButton btnSelectFile = new JButton("Seleccionar archivo");
-        btnSelectFile.setBounds(150,650,150,30);
+        btnSelectFile.setBounds(50,650,150,30);
         panel.add(btnSelectFile);
 
         // Agregamos el evento que va a abrir la ventana de selección de archivos
@@ -98,6 +129,23 @@ public class Ventana extends JFrame{
         btnSelectFile.addActionListener(accionBoton);
     }
 
+    private void btnSeparar(){
+        JButton btn_separar = new JButton("Separar");
+        btn_separar.setBounds(500,650,150,30);
+        panel.add(btn_separar);
+
+        ActionListener accionBoton = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (abrio_correcto = true){
+                    clase_separar.instruccionesEquipo2();
+                    clase_separar.separarElementos();
+                }
+            }
+        };
+        btn_separar.addActionListener(accionBoton);
+    }
+
     public void armarArchivo(){
         int cont = 1;
         total_paginas = 1;
@@ -116,20 +164,24 @@ public class Ventana extends JFrame{
 
         pagina_actual = 1;
         mostrarArchivo();
+        etiqueta_pagina_actual.setText(pagina_actual + "/" + total_paginas);
+        clase_separar.archivo = archivo;
+
+        abrio_correcto = true;
 
     }
 
     public void mostrarArchivo(){
         int cont = 1;
         int renglon_objetivo = pagina_actual;
-        int renglon_buscado = 1;
+        int renglon_buscador = 1;
         String pagina = "";
         int i = 0;
 
-        while (renglon_buscado < renglon_objetivo){
+        while (renglon_buscador < renglon_objetivo){
             if (archivo.charAt(i) == '\n'){
                 if (cont == imprimir){
-                    renglon_buscado++;
+                    renglon_buscador++;
                     cont = 1;
                 }else {
                     cont++;
@@ -138,11 +190,11 @@ public class Ventana extends JFrame{
             i++;
         }
 
-        while (renglon_buscado <= renglon_objetivo && i < tamaño){
+        while (renglon_buscador <= renglon_objetivo && i < tamaño){
             pagina += archivo.charAt(i);
             if (archivo.charAt(i) == '\n'){
                 if (cont == imprimir){
-                    renglon_buscado++;
+                    renglon_buscador++;
                     cont = 1;
                 }else {
                     cont++;
@@ -150,32 +202,102 @@ public class Ventana extends JFrame{
             }
             i++;
         }
-        mostrarASM(pagina);
+        txtA_archivoASM.setText(pagina);
+        //mostrarASM(pagina);
     }
 
-    private void etiquetaAreaSep(){
-        JLabel etiquetaASep = new JLabel();
-        etiquetaASep.setText("SEPARACION DE ELEMENTOS");
-        etiquetaASep.setBounds(690,10,180,50);
-        panel.add(etiquetaASep);
+    public void btnPaginaAnterior(){
+        JButton btn_pagina_anterior = new JButton("Pagina Anterior");
+        btn_pagina_anterior.setBounds(50,750,150,30);
+        panel.add(btn_pagina_anterior);
+
+        ActionListener btn_anterior = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(pagina_actual > 1){
+                    pagina_actual--;
+                    mostrarArchivo();
+                    etiqueta_pagina_actual.setText(pagina_actual + "/" + total_paginas);
+                }
+            }
+        };
+        btn_pagina_anterior.addActionListener(btn_anterior);
     }
 
+    public void btnPaginaSiguiente(){
+        JButton btn_pagina_siguiente = new JButton("Pagina Siguiente");
+        btn_pagina_siguiente.setBounds(250,750,150,30);
+        panel.add(btn_pagina_siguiente);
+
+        ActionListener btn_siguiente = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(pagina_actual < total_paginas){
+                    pagina_actual++;
+                    mostrarArchivo();
+                    etiqueta_pagina_actual.setText(pagina_actual + "/" + total_paginas);
+                }
+            }
+        };
+        btn_pagina_siguiente.addActionListener(btn_siguiente);
+    }
+    private void AreaArchivoASM (){
+        txtA_archivoASM= new JTextArea();
+        txtA_archivoASM.setBounds(20,80,480,500);
+        txtA_archivoASM.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
+        txtA_archivoASM.setEditable(false);
+        panel.add(txtA_archivoASM);
+    }
     private void AreaSeparacion (){
-        JTextArea AreaSeparacion = new JTextArea();
-        AreaSeparacion.setBounds(580,80,400,500);
-        panel.add(AreaSeparacion);
-    }
-
-    private void etiquetaAreaIden(){
-        JLabel etiquetaAIden = new JLabel();
-        etiquetaAIden.setText("IDENTIFICACION DE ELEMENTOS");
-        etiquetaAIden.setBounds(1230,10,200,50);
-        panel.add(etiquetaAIden);
+        txt_area_separacion = new JTextArea();
+        txt_area_separacion.setBounds(580,80,400,500);
+        panel.add(txt_area_separacion);
     }
 
     private void AreaIdentificacion (){
-        JTextArea AreaIdentificacion = new JTextArea();
-        AreaIdentificacion.setBounds(1120,80,400,500);
-        panel.add(AreaIdentificacion);
+        txt_area_identificacion = new JTextArea();
+        txt_area_identificacion.setBounds(1120,80,400,500);
+        panel.add(txt_area_identificacion);
+    }
+
+    private void btnSiguienteSeparar() {
+        JButton btn_siguiente = new JButton("Pagina Siguente");
+        btn_siguiente.setBounds(750,750,150,30);
+        panel.add(btn_siguiente);
+
+        ActionListener accionBoton = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (Separar.paginaL < Separar.paginasL) {
+                    Separar.paginaL++;
+                    Separar.paginaE++;
+                    Separar.mostrarElementos();
+                    Separar.mostrarLexema();
+                    etiqueta_pagina_E.setText(Separar.paginaE + "/" + Separar.paginasE);
+                }
+            }
+        };
+        btn_siguiente.addActionListener(accionBoton);
+    }
+
+    private void btnAtrasSeparar(){
+        JButton btn_atras = new JButton("Pagina Anterior");
+        btn_atras.setBounds(500,750,150,30);
+        panel.add(btn_atras);
+
+        ActionListener accionBoton = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (Separar.paginaL > 1) {
+                    Separar.paginaL--;
+                    Separar.paginaE--;
+                    Separar.mostrarElementos();
+                    Separar.mostrarLexema();
+                    etiqueta_pagina_E.setText(Separar.paginaE + "/" + Separar.paginasE);
+                }
+            }
+        };
+        btn_atras.addActionListener(accionBoton);
+
     }
 }
