@@ -51,7 +51,7 @@ public class window extends JFrame {
 
     public window() {
         super("Análisis lexicográfico");
-        setSize(1500, 520);
+        setSize(1500, 700);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -192,7 +192,7 @@ public class window extends JFrame {
 
     private void btnSelectFile(){
         JButton btnSelectFile = new JButton("Seleccionar archivo");
-        btnSelectFile.setBounds(50,400,150,30);
+        btnSelectFile.setBounds(40,400,150,30);
         panel.add(btnSelectFile);
 
         // Agregamos el evento que va a abrir la ventana de selección de archivos
@@ -254,7 +254,7 @@ public class window extends JFrame {
 
     private void btnAtrasSeparar(){
         JButton btn_atras = new JButton("Pagina Anterior");
-        btn_atras.setBounds(500,400,150,30);
+        btn_atras.setBounds(750,450,150,30);
         panel.add(btn_atras);
 
 
@@ -262,7 +262,7 @@ public class window extends JFrame {
 
     public void btnPaginaAnterior(){
         JButton btn_pagina_anterior = new JButton("Pagina Anterior");
-        btn_pagina_anterior.setBounds(50,400,150,30);
+        btn_pagina_anterior.setBounds(290,450,150,30);
         panel.add(btn_pagina_anterior);
 
         ActionListener btn_anterior = new ActionListener() {
@@ -280,7 +280,7 @@ public class window extends JFrame {
 
     public void btnPaginaSiguiente(){
         JButton btn_pagina_siguiente = new JButton("Pagina Siguiente");
-        btn_pagina_siguiente.setBounds(250,400,150,30);
+        btn_pagina_siguiente.setBounds(290,400,150,30);
         panel.add(btn_pagina_siguiente);
 
         ActionListener btn_siguiente = new ActionListener() {
