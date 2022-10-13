@@ -1,13 +1,11 @@
 package PruebasLeonardo;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import pruebasJose.window;
 
 public class Separar{
 
     static Ventana ventana;
+    static window w;
     String archivo;
     static String elementos = "";
     static String lexemas = "";
@@ -44,6 +42,13 @@ public class Separar{
         iniciarComponentes();
         this.ventana = ventana;
     }
+
+    public Separar(window w) {
+        iniciarComponentes();
+        this.w = w;
+    }
+
+
 
     public void iniciarComponentes() {
         //btnSiguiente();
