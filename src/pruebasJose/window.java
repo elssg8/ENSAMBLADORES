@@ -1,6 +1,6 @@
 package pruebasJose;
 
-import PruebasLeonardo.Separar;
+//import PruebasLeonardo.Separar;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import PruebasLeonardo.*;
 
 public class window extends JFrame {
     private JPanel panel;
@@ -152,6 +153,12 @@ public class window extends JFrame {
                 }
             }
         }
+        pagina_actual = 1;
+        mostrarArchivo();
+        lblPagActual.setText(pagina_actual + "/" + total_paginas);
+        clase_separar.archivo = archivo;
+
+        abrio_correcto = true;
     }
     public void mostrarArchivo(){
         int cont = 1;
@@ -189,7 +196,9 @@ public class window extends JFrame {
         //mostrarASM(pagina);
     }
 
-
+    public void mostrarASM(String dato){//Metodo que nos sirve para ser utilizado en otras clases y mostrar texto en el textArea
+        txtArchivoASM.setText(dato);
+    }
     private void btnSelectFile(){
         JButton btnSelectFile = new JButton("Seleccionar archivo");
         btnSelectFile.setBounds(40,400,150,30);
