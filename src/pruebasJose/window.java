@@ -173,24 +173,6 @@ public class window extends JFrame {
         btnAtrasSeparar = new JButton("Atras");
         btnAtrasSeparar.setBounds(500,400,150,30);
 
-        ActionListener accionBoton = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (Separar > 1) {
-                    Separar.paginaL--;
-                    Separar.paginaE--;
-                    Separar.mostrarElementos();
-                    Separar.mostrarLexema();
-                    etiqueta_pagina_E.setText(Separar.paginaE + "/" + Separar.paginasE);
-                }
-            }
-        };
-        btn_atras.addActionListener(accionBoton);
-
-
-
-
-
 
     }
 
