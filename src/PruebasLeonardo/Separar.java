@@ -6,7 +6,7 @@ public class Separar{
 
     static Ventana ventana;
     static window w;
-    String archivo;
+    public String archivo;
     static String elementos = "";
     static String lexemas = "";
     boolean error = false;
