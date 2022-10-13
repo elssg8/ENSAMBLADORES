@@ -24,22 +24,22 @@ public class Ventana extends JFrame{
 
     Separar clase_separar = new Separar(this);
     public Ventana(){
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH); // Establece la ventana completa
-        //this.setSize(500,500); // Establece el tamaño de la ventana
-        setTitle("Análisis lexicográfico"); // Establecer título a la ventana
-        setLocationRelativeTo(null); // Establecemos posición inicial de la ventana, en el centro
+        super("Análisis lexicográfico");
+        setSize(1500, 1000);
+        setResizable(false);
+        setLocationRelativeTo(null);
 
-        iniciarComponentes(); // llamada al método iniciarComponentes
-        setDefaultCloseOperation(EXIT_ON_CLOSE); // termina la ejecución del programa
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+        iniciarComponentes();
     }
 
     private void iniciarComponentes(){
-        panel = new JPanel(); // Creacion de un panel
-        panel.setLayout(null); // Desactivamos los diseños predeterminados del panel
-        panel.setSize(900,900);
-        this.getContentPane().add(panel); // Agrega el panel a la ventana
-
-
+        initPanel();
+        AreaArchivoASM();
+        
+        
         AreaIdentificacion();
         AreaSeparacion();
         btnSelectFile();
@@ -51,6 +51,16 @@ public class Ventana extends JFrame{
         AreaArchivoASM();
         etiquetas();
     }
+
+
+    public void initPanel() {
+        panel = new JPanel();
+        panel.setLayout(null);
+
+        this.getContentPane().add(panel);
+    }
+    
+    
 
     private void etiquetas(){
         JLabel etiquetaAASM = new JLabel();
@@ -75,6 +85,8 @@ public class Ventana extends JFrame{
         etiqueta_pagina_E = new JLabel();
         etiqueta_pagina_E.setBounds(850,650,150,30);
         panel.add(etiqueta_pagina_E);
+
+
 
     }
 
@@ -268,6 +280,8 @@ public class Ventana extends JFrame{
         ActionListener accionBoton = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                
                 if (Separar.paginaL < Separar.paginasL) {
                     Separar.paginaL++;
                     Separar.paginaE++;
