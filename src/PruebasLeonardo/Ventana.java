@@ -28,8 +28,6 @@ public class Ventana extends JFrame{
         setSize(1500, 1000);
         setResizable(false);
         setLocationRelativeTo(null);
-
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         iniciarComponentes();
@@ -38,8 +36,6 @@ public class Ventana extends JFrame{
     private void iniciarComponentes(){
         initPanel();
         AreaArchivoASM();
-        
-        
         AreaIdentificacion();
         AreaSeparacion();
         btnSelectFile();
@@ -59,8 +55,6 @@ public class Ventana extends JFrame{
 
         this.getContentPane().add(panel);
     }
-    
-    
 
     private void etiquetas(){
         JLabel etiquetaAASM = new JLabel();
@@ -86,11 +80,26 @@ public class Ventana extends JFrame{
         etiqueta_pagina_E.setBounds(850,650,150,30);
         panel.add(etiqueta_pagina_E);
 
-
-
     }
 
+    private void AreaArchivoASM (){
+        txtA_archivoASM= new JTextArea();
+        txtA_archivoASM.setBounds(20,80,480,500);
+        txtA_archivoASM.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
+        txtA_archivoASM.setEditable(false);
+        panel.add(txtA_archivoASM);
+    }
+    private void AreaSeparacion (){
+        txt_area_separacion = new JTextArea();
+        txt_area_separacion.setBounds(580,80,400,500);
+        panel.add(txt_area_separacion);
+    }
 
+    private void AreaIdentificacion (){
+        txt_area_identificacion = new JTextArea();
+        txt_area_identificacion.setBounds(1120,80,400,500);
+        panel.add(txt_area_identificacion);
+    }
     public static void mostrarASM(String dato){//Metodo que nos sirve para ser utilizado en otras clases y mostrar texto en el textArea
         txtA_archivoASM.setText(dato);
     }
@@ -253,24 +262,7 @@ public class Ventana extends JFrame{
         };
         btn_pagina_siguiente.addActionListener(btn_siguiente);
     }
-    private void AreaArchivoASM (){
-        txtA_archivoASM= new JTextArea();
-        txtA_archivoASM.setBounds(20,80,480,500);
-        txtA_archivoASM.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
-        txtA_archivoASM.setEditable(false);
-        panel.add(txtA_archivoASM);
-    }
-    private void AreaSeparacion (){
-        txt_area_separacion = new JTextArea();
-        txt_area_separacion.setBounds(580,80,400,500);
-        panel.add(txt_area_separacion);
-    }
 
-    private void AreaIdentificacion (){
-        txt_area_identificacion = new JTextArea();
-        txt_area_identificacion.setBounds(1120,80,400,500);
-        panel.add(txt_area_identificacion);
-    }
 
     private void btnSiguienteSeparar() {
         JButton btn_siguiente = new JButton("Pagina Siguente");

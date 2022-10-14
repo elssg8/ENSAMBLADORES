@@ -1,6 +1,6 @@
 package control;
 
-import GUI.*;
+import vista.*;
 import modelo.Data;
 
 

@@ -60,7 +60,6 @@ public class window extends JFrame {
         initComponents();
     }
 
-
     public void initComponents() {
         initPanel();
         initLabels();
@@ -82,7 +81,6 @@ public class window extends JFrame {
 
         this.getContentPane().add(panel);
     }
-
 
     public void initLabels() {
         Font titulos = new Font("Times New Rome", Font.BOLD, 18);
