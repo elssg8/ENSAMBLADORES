@@ -27,10 +27,14 @@ public class ValidarT {
         if(this.tipo.equalsIgnoreCase("")) {
             this.tipo = "\tSimbolo";
         }
+        if(palabra.toCharArray()[0] == '\n' ){
+            this.tipo ="";
+        }
         // Ignoramos comentarios
         if (palabra.toCharArray()[0]==';'){
             this.tipo ="";
         }
+
     }// Fin constructor
 
 
@@ -66,7 +70,6 @@ public class ValidarT {
         }
 
     }
-
 
     public static boolean esPar(int numero){
         return numero % 2 == 0;
@@ -110,6 +113,11 @@ public class ValidarT {
         }
     }
 
+    public void validarEtiquetas(String cadena){
+        if(cadena.toLowerCase().toCharArray()[cadena.length()-1] == ':'){
+            setTipo("\tEtiqueta");
+        }
+    }
 
 
     public String getPalabra() {
