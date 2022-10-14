@@ -7,42 +7,24 @@ import modelo.Data;
 public class ControlPrincipal extends ControlAbs{
 
     /*
-     * Esta clase es creada como un control de las ventanas, dirige cuando mostrase u ocultarse
+     * Controlador de la Ventana
+     * Indica:
+     *  Cuando Mostrarse
+     *  Cuando Ocultarse
      */
-
-    /**********************************************************************************************************************************************
-     *
-     * 																ATRIBUTOS
-     *
-     *********************************************************************************************************************************************/
-
-    //private ControlVPrincipal CV;
-    private Ventana vent;
-
-
-    /**********************************************************************************************************************************************
-     *
-     * 																M�TODOS
-     *
-     *********************************************************************************************************************************************/
-
-    public ControlPrincipal(ControlVPrincipal CVP, Ventana venta) {
-        this.vent = venta;
+    private Ventana myWindow;
+    public ControlPrincipal(ControlVPrincipal CVP, Ventana myWindow) {
+        this.myWindow = myWindow;
     }
-
     @Override
     public Data ejecutaComando(String c, Data d, Data d2) {
         switch(c) {
             case Comandos.INICIA:
-                vent.setBounds(0, 0, 1000, 500);
-                vent.setLocationRelativeTo(null);
-
-                vent.setVisible(true);
-
+                myWindow.setBounds(0, 0, 1000, 500);
+                myWindow.setLocationRelativeTo(null);
+                myWindow.setVisible(true);
                 break;
         }
         return null;
-
     }
-
-}//FIN CLASE
+}

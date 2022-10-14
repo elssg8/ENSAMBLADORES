@@ -3,8 +3,6 @@ package main;
 import main.window;
 
 public class Separar{
-
-    public Ventana ventana;
     static window w;
     public String archivo;
     static String elementos = "";
@@ -37,11 +35,6 @@ public class Separar{
     int contar_columna = 1;
 
     String pr[] = new String[24];
-
-    public Separar(Ventana ventana) {
-        iniciarComponentes();
-        this.ventana = ventana;
-    }
 
     public Separar(window w) {
         iniciarComponentes();
@@ -91,7 +84,7 @@ public class Separar{
         lexemas = "";
         fin_archivo = false;
         error = false;
-        filesize = ventana.tamaño;
+        filesize = w.tamaño;
         while (!(fin_archivo)) {
             renglon_anterior = renglon;
             columna = contar_columna;
@@ -697,7 +690,7 @@ public class Separar{
                     break;
                 case 70:
                     c=lee_car();
-                    if (c == 10 || a_a == ventana.tamaño) {
+                    if (c == 10 || a_a == w.tamaño) {
                         ESTADO = 71;
                     } else {
                         ESTADO = 70;
@@ -877,7 +870,8 @@ public class Separar{
         mostrarElementos();
         //mostrarLexema();
 
-        ventana.etiqueta_pagina_E.setText(paginaE + "/" + paginasE);
+
+        //w.etiqueta_pagina_E.setText(paginaE + "/" + paginasE);
         //System.out.println("Paginas: "+paginasA);
         //System.out.println("Pagina:"+paginaA);
     }
@@ -933,7 +927,7 @@ public class Separar{
             }
             i++;
         }
-        ventana.txt_area_identificacion.setText(pag);
+        //ventana.txt_area_identificacion.setText(pag);
     }
 
     public static void mostrarLexema() {
@@ -965,7 +959,7 @@ public class Separar{
             }
             i++;
         }
-        ventana.txt_area_separacion.setText(pag);
+        //ventana.txt_area_separacion.setText(pag);
     }
 
     public boolean es_simbolo(int x){

@@ -110,7 +110,6 @@ public class Ventana extends VentanaAGeneral{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         switch (e.getActionCommand()) {
             case Comandos.BUSCA:
                 buscador = new JFileChooser();
@@ -131,7 +130,7 @@ public class Ventana extends VentanaAGeneral{
                 if(this.iz.getText().compareTo("")!=0) {
                     anl = new Analizador(iz.getText());
 
-                    der.setText(anl.analizaArchivo());
+                    //der.setText(anl.analizaArchivo());
                 }else {
                     JOptionPane.showMessageDialog(this, "Aún no haz seleccionado ningún archivo");
                 }
