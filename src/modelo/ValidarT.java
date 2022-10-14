@@ -1,13 +1,18 @@
 package modelo;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ValidarT {
 
     private  String palabra;
     private  String tipo;
     private String psudoInstrucciones [] = {".model",".stack", ".code",".data","proc", "macros","ends","endm","endp","dup","db","dw","equ"};
+    private String pseudoInstruccionesCompletas [] = {".code segment",".data segment",".stack segment","byte ptr","word ptr","dup","[]","segment","ptr"};
     private String instruccionesE02 [] = {"std","aad","cld","cwd","iret","movsw","div","imul","pop","idiv","shl","xchg","add","lds","jns","js","loopne","jae","jcxz","jl"};
     private String registros [] = {"ah","al","ax","bh","bl","bx","ch","cl","cx","dh","dl","dx","sp","bp","si","di","cs","ds", "es", "ss", "ip"};
 
+    private Pattern pattern;
+    private Matcher matcher;
     public ValidarT(String palabra){
         this.palabra = palabra;
         this.tipo = "";
@@ -20,18 +25,26 @@ public class ValidarT {
         validarBinario(this.palabra);
 
         //Constante de caracter
-        if(palabra.toCharArray()[0]=='\'' || palabra.toCharArray()[0]=='\"') {
+        if(palabra.toCharArray()[0]=='\'' || palabra.toCharArray()[0]=='\"' || palabra.toCharArray()[palabra.length()-1] == '\"') {
+
             this.tipo = "\tConstante caracter";
         }
         //Espacios
         if(this.tipo.equalsIgnoreCase("")) {
             this.tipo = "\tSimbolo";
         }
-        if(palabra.isEmpty()){
-            this.tipo ="";
-        }
         // Ignoramos comentarios
         if (palabra.toCharArray()[0]==';'){
+            this.tipo ="";
+        }
+
+        // Validar espacio(s)
+        pattern = Pattern.compile("\\s", Pattern.CASE_INSENSITIVE);
+        matcher = pattern.matcher(this.palabra);
+
+        boolean validarEspacio = matcher.find();
+
+        if (validarEspacio){
             this.tipo ="";
         }
 
@@ -42,6 +55,14 @@ public class ValidarT {
         for (String a : psudoInstrucciones) {
             if(palabra.toLowerCase().equalsIgnoreCase(a)){
                 this.tipo = "\tPseudoinstruccion";
+            }
+        }
+    }
+
+    public void validarPseudoCompletas(){
+        for (String a : pseudoInstruccionesCompletas) {
+            if(palabra.toLowerCase().equalsIgnoreCase(a)){
+                this.tipo ="\tPseudo Instrucciones";
             }
         }
     }
