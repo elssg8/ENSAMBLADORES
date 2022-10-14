@@ -134,7 +134,7 @@ public class window extends JFrame {
         panel.add(txtSeparacion);
     }
 
-    public void initTextAreaIndentifiacion() {
+   /* public void initTextAreaIndentifiacion() {
         txtIndentificacion = new JTextArea();
         txtIndentificacion.setBounds(1000, 60, 400, 300);
         Border border = BorderFactory.createLineBorder(Color.BLACK);
@@ -142,7 +142,7 @@ public class window extends JFrame {
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
         panel.add(txtIndentificacion);
-    }
+    }*/
 
 
     public void armarArchivo() {
