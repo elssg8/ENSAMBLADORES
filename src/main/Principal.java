@@ -21,7 +21,7 @@ public class Principal {
 
 
         //CONTROL DE LA VENTANA
-        //Vent.setControl(CV);
+        Vent.setControl(CV);
 
 
 

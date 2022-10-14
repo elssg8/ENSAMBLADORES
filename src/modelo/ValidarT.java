@@ -121,15 +121,16 @@ public class ValidarT {
     public void validarBinario(String cadena){
         boolean validarBinario = false;
 
-        for (int i = 0; i < cadena.length(); i++) {
-            if(cadena.charAt(i) == '0' || cadena.charAt(i) == '1' || cadena.charAt(i) =='B' || cadena.charAt(i) == 'b'){
-                validarBinario = esPar(cadena.length()-1);
-            }else {
-                validarBinario = false;
-                break;
+        if(cadena.toLowerCase().toCharArray()[cadena.length()-1]=='b'){
+            for (int i = 0; i < cadena.length(); i++) {
+                if(cadena.charAt(i)=='0' || cadena.charAt(i) =='1' || cadena.toLowerCase().charAt(i) == 'b'){
+                    validarBinario = esPar(cadena.length()-1);
+                } else {
+                    validarBinario = false;
+                    break;
+                }
             }
-
-        } // Fin for
+        }
 
         if(validarBinario){
             setTipo("Binario");
