@@ -1,0 +1,20 @@
+A) Separación de elementos
+
+1. Preguntar el archivo con el programa fuente a traducir (.asm).
+2. Validar la existencia del archivo sin restricciones de ubicación.
+3. Abrirlo para lectura sin restricciones de ubicación.
+4. Desplegar el archivo.
+5. Leer y separar elementos.
+6. Desplegar los elementos encontrados en pantalla en forma de lista (el despliegue debe ser capaz de mostrar página por página la lista de elementos).
+
+B) Identificación de elementos
+
+7. En esta parte se contempla el análisis lexicográfico del programa fuente, es decir, identificar todos y cada uno de los elementos del programa fuente como elementos válidos del lenguaje (pseudoinstrucción, instrucción, registro, símbolo, constante [numérica decimal, numérica hexadecimal, numérica binaria, caracter]). Se debe cubrir la característica de desplegar frente a cada elemento de la lista (resultado del inciso A del apartado 6), el tipo de elemento de que se trate. De no identificar a un elemento como válido, se debe desplegar el mensaje: "Elemento no identificado" o "Elemento inválido".
+
+CONSIDERACIONES:
+
+Los comentarios que comienzan con punto y coma no se deben considerar, por lo que se deben eliminar.
+Los separadores de elementos son: el espacio, los dos puntos y la coma.
+Los siguientes elementos son compuestos: .code segment, .data segment,  .stack segment, byte ptr, word ptr, dup(xxx), [xxx], "xxxx", 'xxxx'. Estos no se deben separar y deben mostrarse de esa manera en la lista que despliega el programa.
+De encontrarse equipos con programas iguales, se dividirá la calificación entre todos.
+Para el caso de las instrucciones, tu programa no deberá identificar todas las instrucciones del procesador 8086, solo un subconjunto con base en la siguiente tabla. Es restricción del proyecto el que únicamente identifiquen las instrucciones asignadas, debiendo considerar como símbolos las instrucciones no asignadas.
