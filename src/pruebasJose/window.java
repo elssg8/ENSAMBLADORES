@@ -90,8 +90,8 @@ public class window extends JFrame {
         lblASM.setFont(titulos);
 
         lblSeparar = new JLabel();
-        lblSeparar.setText("Separación e identificación de Elementos");
-        lblSeparar.setBounds(600, 10, 250, 50);
+        lblSeparar.setText("Separación e identificación");
+        lblSeparar.setBounds(600, 10, 300, 50);
         lblSeparar.setFont(titulos);
 
         lblPagActual = new JLabel();
