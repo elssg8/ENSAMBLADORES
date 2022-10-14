@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import PruebasLeonardo.*;
-import modelo.*;
 
 public class window extends JFrame {
     private JPanel panel;
@@ -29,11 +28,15 @@ public class window extends JFrame {
     private JButton btnSeparar;
     private JButton btnAtrasSeparar;
     private JButton btnSiguienteSeparar;
+
+
     private String nombre_archivo;
     private String ruta_archivo;
     private String archivo;
+
     private static int total_paginas;
     private static int pagina_actual;
+
     int tamaño;
     private byte imprimir = 15;
 
@@ -61,7 +64,7 @@ public class window extends JFrame {
         initLabels();
         initTextAreaArchivoASM();
         initTextAreaSeparacion();
-        //initTextAreaIndentifiacion();
+        initTextAreaIndentifiacion();
         btnSelectFile();
         btnSeparar();
         btnSiguienteSeparar();
@@ -97,7 +100,7 @@ public class window extends JFrame {
         lblIden.setFont(titulos);
 
         lblPagActual = new JLabel();
-        lblPagActual.setBounds(360,380, 150, 30);
+        lblPagActual.setBounds(310,380, 150, 30);
 
         lbl_pagina_elementos = new JLabel();
         lbl_pagina_elementos.setBounds(850, 650, 150, 30);
@@ -130,7 +133,7 @@ public class window extends JFrame {
         panel.add(txtSeparacion);
     }
 
-   /* public void initTextAreaIndentifiacion() {
+    public void initTextAreaIndentifiacion() {
         txtIndentificacion = new JTextArea();
         txtIndentificacion.setBounds(1000, 60, 400, 300);
         Border border = BorderFactory.createLineBorder(Color.BLACK);
@@ -138,7 +141,7 @@ public class window extends JFrame {
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
         panel.add(txtIndentificacion);
-    }*/
+    }
 
 
     public void armarArchivo() {
@@ -203,14 +206,15 @@ public class window extends JFrame {
         txtArchivoASM.setText(dato);
     }
     private void btnSelectFile(){
-        btnSelectFile = new JButton("Open File");
+        JButton btnSelectFile = new JButton("Seleccionar archivo");
         btnSelectFile.setBounds(40,400,150,30);
         panel.add(btnSelectFile);
 
-
+        // Agregamos el evento que va a abrir la ventana de selección de archivos
         ActionListener accionBoton = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 JFileChooser file_chooser = new JFileChooser();
                 FileNameExtensionFilter filtro_archivo = new FileNameExtensionFilter("ASM", "asm");
                 file_chooser.setFileFilter(filtro_archivo);
@@ -248,13 +252,8 @@ public class window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (abrio_correcto = true){
-                    Analizador analizar;
-                    if(txtArchivoASM.getText().compareTo("") !=0){
-                        analizar = new Analizador(txtArchivoASM.getText());
-                        txtSeparacion.setText(analizar.analizaArchivo());
-                    } else {
-                        JOptionPane.showMessageDialog(null,"Aun no haz Seleccionado  ningun archivo");
-                    }
+                    clase_separar.instruccionesEquipo2();
+                    clase_separar.separarElementos();
                 }
             }
         };
@@ -311,4 +310,7 @@ public class window extends JFrame {
         };
         btn_pagina_siguiente.addActionListener(btn_siguiente);
     }
+
+
+
 }
