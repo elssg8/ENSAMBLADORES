@@ -76,7 +76,7 @@ public class window extends JFrame {
         panel = new JPanel();
         panel.setLayout(null);
 
-        this.getContentPane().add(panel);
+        this.getContentPane().add(panel).setBackground(Color.pink);
     }
 
     public void initLabels() {
