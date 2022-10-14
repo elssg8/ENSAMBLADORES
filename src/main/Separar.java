@@ -1,4 +1,4 @@
-package PruebasLeonardo;
+package main;
 
 import main.window;
 

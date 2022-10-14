@@ -1,6 +1,6 @@
 package main;
 
-//import PruebasLeonardo.Separar;
+//import main.Separar;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import PruebasLeonardo.*;
+
 import modelo.Analizador;
 
 public class window extends JFrame {
