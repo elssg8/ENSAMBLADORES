@@ -97,7 +97,7 @@ public class window extends JFrame {
         lblIden.setFont(titulos);
 
         lblPagActual = new JLabel();
-        lblPagActual.setBounds(310,380, 150, 30);
+        lblPagActual.setBounds(360,380, 150, 30);
 
         lbl_pagina_elementos = new JLabel();
         lbl_pagina_elementos.setBounds(850, 650, 150, 30);
