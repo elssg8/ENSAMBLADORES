@@ -58,18 +58,21 @@ public class PruebasLocas {
         String valido = "NO VALIDO";
         boolean validarBinario = false;
 
-        for (int i = 0; i < cadena.length(); i++) {
-            if(cadena.charAt(i) == '0' || cadena.charAt(i) == '1' || cadena.charAt(i) =='B' || cadena.charAt(i) == 'b'){
-                validarBinario = esPar(cadena.length()-1);
-            }else {
-                validarBinario = false;
-                break;
+        if(cadena.toLowerCase().toCharArray()[cadena.length()-1]=='b'){
+            for (int i = 0; i < cadena.length(); i++) {
+                if(cadena.charAt(i)=='0' || cadena.charAt(i) =='1' || cadena.toLowerCase().charAt(i) == 'b'){
+                    validarBinario = esPar(cadena.length()-1);
+                } else {
+                    validarBinario = false;
+                    break;
+                }
             }
+        }
 
-        } // Fin for
+
 
         if(validarBinario){
-            valido  = "BIN VALIDO :))";
+           valido ="OK";
         }
 
         return  valido;
@@ -80,12 +83,12 @@ public class PruebasLocas {
 
         PruebasLocas test = new PruebasLocas();
         // Prueba para validar un numero HEX
-        String hexadecimal = "0F2H";
+        String hexadecimal = "012H";
         System.out.println(test.validarHexadecimal(hexadecimal));
 
 
         // Prueba para validar un numero BINARIO
-        String binario = "1B";
+        String binario = "b1010b";
         System.out.println(test.validarBinario(binario));
 
     }

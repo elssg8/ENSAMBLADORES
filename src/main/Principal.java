@@ -1,7 +1,7 @@
-package Principal;
+package main;
 
 import  control.*;
-import  GUI.*;
+import vista.*;
 
 
 public class Principal {
@@ -21,7 +21,7 @@ public class Principal {
 
 
         //CONTROL DE LA VENTANA
-        //Vent.setControl(CV);
+        Vent.setControl(CV);
 
 
 

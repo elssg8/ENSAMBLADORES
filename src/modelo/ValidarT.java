@@ -1,8 +1,6 @@
 package modelo;
 
-import javax.xml.crypto.Data;
-
-public class Token  {
+public class ValidarT {
 
     private  String palabra;
     private  String tipo;
@@ -11,26 +9,21 @@ public class Token  {
     private String instruccionesE02 [] = {"std","aad","cld","cwd","iret","movsw","div","imul","pop","idiv","shl","xchg","add","lds","jns","js","loopne","jae","jcxz","jl"};
     private String registros [] = {"ah","al","ax","bh","bl","bx","ch","cl","cx","dh","dl","dx","sp","bp","si","di","cs","ds", "es", "ss", "ip"};
 
-    public Token(String palabra){
+    public ValidarT(String palabra){
         this.palabra = palabra;
         this.tipo = "";
-
-        // Validando pseudoInstrucciones
         validarPseudoInstrucciones(this.palabra);
-        // Validando instrucciones
         for (String b:instruccionesE02) {
             if(this.palabra.toLowerCase().equalsIgnoreCase(b)){
                 this.tipo = "Instruccion";
             }
         }
-        // Validando registros
         for (String c : registros) {
             if(this.palabra.toLowerCase().equalsIgnoreCase(c)){
                 this.tipo = "Registro";
             }
         }
 
-        // Valida constantes numericas
         if(palabra.toCharArray()[0]=='0'||palabra.toCharArray()[0]=='1'||palabra.toCharArray()[0]=='2'||palabra.toCharArray()[0]=='3'||
                 palabra.toCharArray()[0]=='4'||palabra.toCharArray()[0]=='5'||palabra.toCharArray()[0]=='6'||palabra.toCharArray()[0]=='7'||
                 palabra.toCharArray()[0]=='8'||palabra.toCharArray()[0]=='9') {
@@ -105,7 +98,6 @@ public class Token  {
     }
 
 
-
     public  void validarHexadecimal(String cadena){
         boolean validarHex = false;
         if(cadena.charAt(0) == '0'){
@@ -129,15 +121,16 @@ public class Token  {
     public void validarBinario(String cadena){
         boolean validarBinario = false;
 
-        for (int i = 0; i < cadena.length(); i++) {
-            if(cadena.charAt(i) == '0' || cadena.charAt(i) == '1' || cadena.charAt(i) =='B' || cadena.charAt(i) == 'b'){
-                validarBinario = esPar(cadena.length()-1);
-            }else {
-                validarBinario = false;
-                break;
+        if(cadena.toLowerCase().toCharArray()[cadena.length()-1]=='b'){
+            for (int i = 0; i < cadena.length(); i++) {
+                if(cadena.charAt(i)=='0' || cadena.charAt(i) =='1' || cadena.toLowerCase().charAt(i) == 'b'){
+                    validarBinario = esPar(cadena.length()-1);
+                } else {
+                    validarBinario = false;
+                    break;
+                }
             }
-
-        } // Fin for
+        }
 
         if(validarBinario){
             setTipo("Binario");
@@ -165,9 +158,5 @@ public class Token  {
     public String toString() {
         return this.palabra + "\t" + this.tipo + "\n";
     }
-
-
-
-
 
 }
