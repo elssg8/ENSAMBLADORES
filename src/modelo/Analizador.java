@@ -1,17 +1,29 @@
 package modelo;
 
+import pruebasJose.window;
+
 import java.util.ArrayList;
 
 public class Analizador {
+
+    static int imprimir=15;
+    static int tamE;
+    int tamL;
+    static int paginasE;
+    static int paginaE;
+    int paginasL;
+    int paginaL;
+    String elementos="";
+    String lexemas="";
     private String txt;
     private char txtCompleto [];
     private ArrayList<ValidarT> palabras;
     private ArrayList<String> lineas;
-    private String resultado;
+    private static String resultado;
     public Analizador(String texto) {
         this.txt = texto;
     }
-    public String analizaArchivo() {
+    public void analizaArchivo() {
 
         txtCompleto = txt.toCharArray();
 
@@ -106,10 +118,77 @@ public class Analizador {
         resultado = "";
         for(int j =0; j<palabras.size(); j++) {
             resultado = resultado + palabras.get(j).toString();
+            System.out.println(resultado);
         }
 
-        return resultado;
+        construirElementos();
     }
 
+    public static void construirElementos(){
+        int cont=1;
+        paginasE=1;
+        tamE=resultado.length();
+        for (int i = 0; i < tamE; i++) {
+            if (resultado.charAt(i) == '\n') {
+                if (cont == imprimir) {
+                    paginasE++;
+                    cont=1;
+                }else{
+                    cont++;
+                }
+            }
+        }
+        paginaE=1;
+        mostrarElementos();
+    }
+
+    public static void mostrarElementos(){
+        int cont=1;
+        int renglonObjetivo=paginaE;
+        int renglonBuscador=1;
+        String pag="";
+        int i=0;
+        while(renglonBuscador<renglonObjetivo){
+            if (resultado.charAt(i) == '\n') {
+                if(cont==imprimir){
+                    renglonBuscador++;
+                    cont=1;
+                }else{
+                    cont++;
+                }
+            }
+            i++;
+        }
+        while(renglonBuscador<=renglonObjetivo&&i<tamE){
+            pag += resultado.charAt(i);
+            if (resultado.charAt(i) == '\n') {
+                if (cont==imprimir) {
+                    renglonBuscador++;
+                    cont=1;
+                }else{
+                    cont++;
+                }
+            }
+            i++;
+        }
+        window.txtSeparacion.setText(pag);
+
+    }
+
+    public static void btnAtras() {
+        if(paginaE>1){
+            paginaE--;
+            mostrarElementos();
+            //lblPaginaE.setText(paginaE+"/"+paginasE);
+        }
+    }
+
+    public static void btnSiguiente() {
+        if(paginaE<paginasE){
+            paginaE++;
+            mostrarElementos();
+            //lblPaginaE.setText(paginaE+"/"+paginasE);
+        }
+    }
 
 }

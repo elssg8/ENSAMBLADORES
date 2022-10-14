@@ -23,7 +23,7 @@ public class window extends JFrame {
     private JLabel lbl_pagina_elementos;
     private JTextArea txtArchivoASM;
     private JTextArea txtIndentificacion;
-    private JTextArea txtSeparacion;
+    public static JTextArea txtSeparacion;
     private JButton btnSelectFile;
 
     private JButton btnSeparar;
@@ -257,7 +257,7 @@ public class window extends JFrame {
                     Analizador analizar;
                     if(txtArchivoASM.getText().compareTo("") !=0){
                         analizar = new Analizador(txtArchivoASM.getText());
-                        txtSeparacion.setText(analizar.analizaArchivo());
+                        analizar.analizaArchivo();
                     } else {
                         JOptionPane.showMessageDialog(null,"Aun no haz Seleccionado  ningun archivo");
                     }
@@ -273,6 +273,15 @@ public class window extends JFrame {
         btn_siguiente.setFont(new Font("", Font.PLAIN, 25));
         btn_siguiente.setBounds(830,400,70,30);
         panel.add(btn_siguiente);
+
+        ActionListener action = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Analizador.btnSiguiente();
+            }
+        };
+
+        btn_siguiente.addActionListener(action);
     }
 
     private void btnAtrasSeparar(){
@@ -280,6 +289,15 @@ public class window extends JFrame {
         btn_atras.setFont(new Font("", Font.PLAIN, 25));
         btn_atras.setBounds(750,400,70,30);
         panel.add(btn_atras);
+
+        ActionListener action = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Analizador.btnAtras();
+            }
+        };
+
+        btn_atras.addActionListener(action);
 
     }
 
