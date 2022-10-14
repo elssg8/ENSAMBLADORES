@@ -311,7 +311,4 @@ public class window extends JFrame {
         };
         btn_pagina_siguiente.addActionListener(btn_siguiente);
     }
-
-
-
 }
