@@ -101,7 +101,7 @@ public class window extends JFrame {
         lblIden.setFont(titulos);
 
         lblPagActual = new JLabel();
-        lblPagActual.setBounds(310,380, 150, 30);
+        lblPagActual.setBounds(350,370, 150, 30);
 
         lbl_pagina_elementos = new JLabel();
         lbl_pagina_elementos.setBounds(850, 650, 150, 30);
@@ -271,14 +271,14 @@ public class window extends JFrame {
     private void btnSiguienteSeparar() {
         JButton btn_siguiente = new JButton("→");
         btn_siguiente.setFont(new Font("", Font.PLAIN, 25));
-        btn_siguiente.setBounds(750,400,70,30);
+        btn_siguiente.setBounds(830,400,70,30);
         panel.add(btn_siguiente);
     }
 
     private void btnAtrasSeparar(){
         JButton btn_atras = new JButton("←");
         btn_atras.setFont(new Font("", Font.PLAIN, 25));
-        btn_atras.setBounds(750,450,70,30);
+        btn_atras.setBounds(750,400,70,30);
         panel.add(btn_atras);
 
     }
@@ -286,7 +286,7 @@ public class window extends JFrame {
     public void btnPaginaAnterior(){
         JButton btn_pagina_anterior = new JButton("←");
         btn_pagina_anterior.setFont(new Font("", Font.PLAIN, 25));
-        btn_pagina_anterior.setBounds(290,450,70,30);
+        btn_pagina_anterior.setBounds(290,400,70,30);
         panel.add(btn_pagina_anterior);
 
         ActionListener btn_anterior = new ActionListener() {
@@ -305,7 +305,7 @@ public class window extends JFrame {
     public void btnPaginaSiguiente(){
         JButton btn_pagina_siguiente = new JButton("→");
         btn_pagina_siguiente.setFont(new Font("", Font.PLAIN, 25));
-        btn_pagina_siguiente.setBounds(290,400,70,30);
+        btn_pagina_siguiente.setBounds(370,400,70,30);
         panel.add(btn_pagina_siguiente);
 
         ActionListener btn_siguiente = new ActionListener() {
