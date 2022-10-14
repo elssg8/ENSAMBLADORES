@@ -45,7 +45,7 @@ public class ValidarT {
     public void validarInstrucciones(String palabra){
         for (String a : instruccionesE02){
             if(palabra.toLowerCase().equalsIgnoreCase(a)){
-                this.tipo = "\tinstruccion";
+                this.tipo = "\tInstruccion";
             }
         }
     }
@@ -53,7 +53,7 @@ public class ValidarT {
     public void validarRegistro(String palabra){
         for(String a: registros){
             if(palabra.toLowerCase().equalsIgnoreCase(a)){
-                this.tipo = "\tregistro";
+                this.tipo = "\tRegistro";
             }
         }
     }
