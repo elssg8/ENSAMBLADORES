@@ -52,7 +52,7 @@ public class window extends JFrame {
 
     public window() {
         super("Análisis lexicográfico");
-        setSize(1500, 700);
+        setSize(1000, 600);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -65,7 +65,6 @@ public class window extends JFrame {
         initLabels();
         initTextAreaArchivoASM();
         initTextAreaSeparacion();
-        //initTextAreaIndentifiacion();
         btnSelectFile();
         btnSeparar();
         btnSiguienteSeparar();
@@ -95,11 +94,6 @@ public class window extends JFrame {
         lblSeparar.setBounds(600, 10, 250, 50);
         lblSeparar.setFont(titulos);
 
-        lblIden = new JLabel();
-        lblIden.setText("Indentifiacion de Elementos");
-        lblIden.setBounds(1100, 10, 280, 50);
-        lblIden.setFont(titulos);
-
         lblPagActual = new JLabel();
         lblPagActual.setBounds(350,370, 150, 30);
 
@@ -108,7 +102,6 @@ public class window extends JFrame {
 
         panel.add(lblASM);
         panel.add(lblSeparar);
-        panel.add(lblIden);
         panel.add(lblPagActual); // CHECAR
         panel.add(lbl_pagina_elementos); // CHECAR
     }
@@ -133,17 +126,6 @@ public class window extends JFrame {
 
         panel.add(txtSeparacion);
     }
-
-   /* public void initTextAreaIndentifiacion() {
-        txtIndentificacion = new JTextArea();
-        txtIndentificacion.setBounds(1000, 60, 400, 300);
-        Border border = BorderFactory.createLineBorder(Color.BLACK);
-        txtIndentificacion.setBorder(BorderFactory.createCompoundBorder(border,
-                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-
-        panel.add(txtIndentificacion);
-    }*/
-
 
     public void armarArchivo() {
         int cont = 1;
