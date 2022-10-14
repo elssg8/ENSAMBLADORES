@@ -1,6 +1,6 @@
 package modelo;
 
-import pruebasJose.window;
+import main.window;
 
 import java.util.ArrayList;
 

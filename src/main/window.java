@@ -1,4 +1,4 @@
-package pruebasJose;
+package main;
 
 //import PruebasLeonardo.Separar;
 
@@ -18,7 +18,6 @@ public class window extends JFrame {
     private JPanel panel;
     private JLabel lblASM;
     private JLabel lblSeparar;
-    private JLabel lblIden;
     private JLabel lblPagActual;
     private JLabel lbl_pagina_elementos;
     private JTextArea txtArchivoASM;

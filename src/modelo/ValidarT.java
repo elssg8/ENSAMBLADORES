@@ -27,7 +27,7 @@ public class ValidarT {
         if(this.tipo.equalsIgnoreCase("")) {
             this.tipo = "\tSimbolo";
         }
-        if(palabra.toCharArray()[0] == '\n' ){
+        if(palabra.isEmpty()){
             this.tipo ="";
         }
         // Ignoramos comentarios

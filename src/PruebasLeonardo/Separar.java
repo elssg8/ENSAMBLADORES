@@ -1,6 +1,6 @@
 package PruebasLeonardo;
 
-import pruebasJose.window;
+import main.window;
 
 public class Separar{
 
