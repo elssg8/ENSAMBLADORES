@@ -1,7 +1,7 @@
-package Principal;
+package main;
 
 import  control.*;
-import  GUI.*;
+import vista.*;
 
 
 public class Principal {

@@ -1,8 +1,7 @@
 package modelo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Archivo {
     private  String path;
@@ -11,8 +10,6 @@ public class Archivo {
         super();
         this.path = path;
     }
-
-
     @Override
     public String toString(){
         String content = "";

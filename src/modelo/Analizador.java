@@ -5,17 +5,12 @@ import java.util.ArrayList;
 public class Analizador {
     private String txt;
     private char txtCompleto [];
-    private ArrayList<Token> palabras;
+    private ArrayList<ValidarT> palabras;
     private ArrayList<String> lineas;
     private String resultado;
-
-
-
-
     public Analizador(String texto) {
         this.txt = texto;
     }
-
     public String analizaArchivo() {
 
         txtCompleto = txt.toCharArray();
@@ -26,7 +21,7 @@ public class Analizador {
         String palabra;
 
         palabra = "";
-        this.palabras =  new ArrayList<Token>();
+        this.palabras =  new ArrayList<ValidarT>();
 
         char[] aux = {};
 
@@ -43,7 +38,7 @@ public class Analizador {
 
         for(int i = 0; i<lineas.size();i++) {
             if(palabra !="") {
-                palabras.add(new Token(palabra));
+                palabras.add(new ValidarT(palabra));
                 palabra = "";
             }
 
@@ -60,21 +55,21 @@ public class Analizador {
 
                         if(palabra.equalsIgnoreCase("STACK")) {
                             palabra = "STACK SEGMENT";
-                            palabras.add(new Token(palabra));
+                            palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
                         }
 
                         if(palabra.equalsIgnoreCase("DATA")) {
                             palabra = "DATA SEGMENT";
-                            palabras.add(new Token(palabra));
+                            palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
                         }
 
                         if(palabra.equalsIgnoreCase("CODE")) {
                             palabra = "CODE SEGMENT";
-                            palabras.add(new Token(palabra));
+                            palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
                         }
@@ -84,14 +79,14 @@ public class Analizador {
                                 palabra = palabra + aux[k];
                                 if(aux[k]==','|| aux[k]=='\n') {
                                     if(palabra !="") {
-                                        palabras.add(new Token(palabra));
+                                        palabras.add(new ValidarT(palabra));
                                         palabra = "";
                                     }
                                     continue;
                                 }
                             }
                             if(palabra !="") {
-                                palabras.add(new Token(palabra));
+                                palabras.add(new ValidarT(palabra));
                                 palabra = "";
                             }							break;
                         }
@@ -99,7 +94,7 @@ public class Analizador {
                     }
                     if(aux[j]==' ' || aux[j]==','|| aux[j]=='\n') {
                         if(palabra !="") {
-                            palabras.add(new Token(palabra));
+                            palabras.add(new ValidarT(palabra));
                             palabra = "";
                         }
                     }
