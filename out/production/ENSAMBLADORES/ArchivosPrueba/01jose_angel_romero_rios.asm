@@ -32,7 +32,7 @@ endm
 code segment
 start:
 ;set segment regiter
-    mov ax bx
+    mov ax, bx
     int 010h
     letra:
     pintura:nop
@@ -42,7 +42,7 @@ start:
 ends 
 
 proc llamado
-    add cx semana
+    add cx, semana
     ret
 
 llamado endp

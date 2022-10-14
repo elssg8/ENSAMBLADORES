@@ -1,6 +1,6 @@
-package pruebasJose;
+package main;
 
-//import PruebasLeonardo.Separar;
+//import main.Separar;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,14 +11,13 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import PruebasLeonardo.*;
+
 import modelo.Analizador;
 
 public class window extends JFrame {
     private JPanel panel;
     private JLabel lblASM;
     private JLabel lblSeparar;
-    private JLabel lblIden;
     private JLabel lblPagActual;
     private JLabel lbl_pagina_elementos;
     private JTextArea txtArchivoASM;
@@ -85,13 +84,13 @@ public class window extends JFrame {
         Font titulos = new Font("Times New Rome", Font.BOLD, 18);
 
         lblASM = new JLabel();
-        lblASM.setText("Codigo Fuente .ASM");
+        lblASM.setText("Código Fuente .ASM");
         lblASM.setBounds(180, 10, 200, 50);
         lblASM.setFont(titulos);
 
         lblSeparar = new JLabel();
-        lblSeparar.setText("Separacion de Elementos");
-        lblSeparar.setBounds(600, 10, 250, 50);
+        lblSeparar.setText("Separación e identificación");
+        lblSeparar.setBounds(600, 10, 300, 50);
         lblSeparar.setFont(titulos);
 
         lblPagActual = new JLabel();
