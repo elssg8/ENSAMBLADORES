@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import PruebasLeonardo.*;
+import modelo.Analizador;
 
 public class window extends JFrame {
     private JPanel panel;
@@ -244,20 +245,26 @@ public class window extends JFrame {
     }
 
     private void btnSeparar(){
-        JButton btn_separar = new JButton("Separar");
-        btn_separar.setBounds(500,400,150,30);
-        panel.add(btn_separar);
+        btnSeparar = new JButton("Separar");
+        btnSeparar.setBounds(500,400,150,30);
+        panel.add(btnSeparar);
+
 
         ActionListener accionBoton = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (abrio_correcto = true){
-                    clase_separar.instruccionesEquipo2();
-                    clase_separar.separarElementos();
+                    Analizador analizar;
+                    if(txtArchivoASM.getText().compareTo("") !=0){
+                        analizar = new Analizador(txtArchivoASM.getText());
+                        txtSeparacion.setText(analizar.analizaArchivo());
+                    } else {
+                        JOptionPane.showMessageDialog(null,"Aun no haz Seleccionado  ningun archivo");
+                    }
                 }
             }
         };
-        btn_separar.addActionListener(accionBoton);
+        btnSeparar.addActionListener(accionBoton);
     }
 
 
@@ -271,7 +278,6 @@ public class window extends JFrame {
         JButton btn_atras = new JButton("Pagina Anterior");
         btn_atras.setBounds(750,450,150,30);
         panel.add(btn_atras);
-
 
     }
 
