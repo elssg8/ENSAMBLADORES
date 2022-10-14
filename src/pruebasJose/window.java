@@ -52,7 +52,7 @@ public class window extends JFrame {
 
     public window() {
         super("Análisis lexicográfico");
-        setSize(1500, 700);
+        setSize(1000, 600);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
