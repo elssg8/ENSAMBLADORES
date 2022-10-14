@@ -65,7 +65,7 @@ public class window extends JFrame {
         initLabels();
         initTextAreaArchivoASM();
         initTextAreaSeparacion();
-        initTextAreaIndentifiacion();
+        //initTextAreaIndentifiacion();
         btnSelectFile();
         btnSeparar();
         btnSiguienteSeparar();
