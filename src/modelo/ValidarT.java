@@ -4,7 +4,6 @@ public class ValidarT {
 
     private  String palabra;
     private  String tipo;
-
     private String psudoInstrucciones [] = {".model",".stack", ".code",".data","proc", "macros","ends","endm","endp","dup","db","dw","equ"};
     private String instruccionesE02 [] = {"std","aad","cld","cwd","iret","movsw","div","imul","pop","idiv","shl","xchg","add","lds","jns","js","loopne","jae","jcxz","jl"};
     private String registros [] = {"ah","al","ax","bh","bl","bx","ch","cl","cx","dh","dl","dx","sp","bp","si","di","cs","ds", "es", "ss", "ip"};
@@ -26,7 +25,7 @@ public class ValidarT {
         }
         //Espacios
         if(this.tipo.equalsIgnoreCase("")) {
-            this.tipo = "Simbolo";
+            this.tipo = "\tSimbolo";
         }
         // Ignoramos comentarios
         if (palabra.toCharArray()[0]==';'){
@@ -38,7 +37,7 @@ public class ValidarT {
     public void validarPseudoInstrucciones(String palabra){
         for (String a : psudoInstrucciones) {
             if(palabra.toLowerCase().equalsIgnoreCase(a)){
-                this.tipo = "pseudoinstruccion";
+                this.tipo = "\tPseudoinstruccion";
             }
         }
     }
@@ -46,7 +45,7 @@ public class ValidarT {
     public void validarInstrucciones(String palabra){
         for (String a : instruccionesE02){
             if(palabra.toLowerCase().equalsIgnoreCase(a)){
-                this.tipo = "instruccion";
+                this.tipo = "\tinstruccion";
             }
         }
     }
@@ -54,7 +53,7 @@ public class ValidarT {
     public void validarRegistro(String palabra){
         for(String a: registros){
             if(palabra.toLowerCase().equalsIgnoreCase(a)){
-                this.tipo = "registro";
+                this.tipo = "\tregistro";
             }
         }
     }
@@ -63,7 +62,7 @@ public class ValidarT {
         if(palabra.toCharArray()[0]=='0'|| palabra.toCharArray()[0]=='1'|| palabra.toCharArray()[0]=='2'||palabra.toCharArray()[0]=='3'||
                 palabra.toCharArray()[0]=='4'||palabra.toCharArray()[0]=='5'||palabra.toCharArray()[0]=='6'||palabra.toCharArray()[0]=='7'||
                 palabra.toCharArray()[0]=='8'||palabra.toCharArray()[0]=='9') {
-            setTipo("Numero Decimal");
+            setTipo("\tNumero Decimal");
         }
 
     }
@@ -87,7 +86,7 @@ public class ValidarT {
         }
 
         if(validarHex){
-            setTipo("Hexadecimal");
+            setTipo("\tHexadecimal");
         }
     }
 
@@ -107,7 +106,7 @@ public class ValidarT {
         }
 
         if(validarBinario){
-            setTipo("Binario");
+            setTipo("\tBinario");
         }
     }
 
