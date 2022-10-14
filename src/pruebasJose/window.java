@@ -85,12 +85,12 @@ public class window extends JFrame {
         Font titulos = new Font("Times New Rome", Font.BOLD, 18);
 
         lblASM = new JLabel();
-        lblASM.setText("Codigo Fuente .ASM");
+        lblASM.setText("Código Fuente .ASM");
         lblASM.setBounds(180, 10, 200, 50);
         lblASM.setFont(titulos);
 
         lblSeparar = new JLabel();
-        lblSeparar.setText("Separacion de Elementos");
+        lblSeparar.setText("Separación e identificación de Elementos");
         lblSeparar.setBounds(600, 10, 250, 50);
         lblSeparar.setFont(titulos);
 
