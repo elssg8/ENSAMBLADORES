@@ -110,7 +110,6 @@ public class Ventana extends VentanaAGeneral{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         switch (e.getActionCommand()) {
             case Comandos.BUSCA:
                 buscador = new JFileChooser();

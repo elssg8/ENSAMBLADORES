@@ -5,7 +5,7 @@ public class ValidarT {
     private  String palabra;
     private  String tipo;
 
-    private String psudoInstrucciones [] = {".stack", ".code",".data","proc", "macros","end","ends","endm","endp","dup","db","dw","equ"};
+    private String psudoInstrucciones [] = {".stack", ".code",".data","proc", "macros","ends","endm","endp","dup","db","dw","equ"};
     private String instruccionesE02 [] = {"std","aad","cld","cwd","iret","movsw","div","imul","pop","idiv","shl","xchg","add","lds","jns","js","loopne","jae","jcxz","jl"};
     private String registros [] = {"ah","al","ax","bh","bl","bx","ch","cl","cx","dh","dl","dx","sp","bp","si","di","cs","ds", "es", "ss", "ip"};
 
@@ -96,8 +96,6 @@ public class ValidarT {
     public static boolean esPar(int numero){
         return numero % 2 == 0;
     }
-
-
     public  void validarHexadecimal(String cadena){
         boolean validarHex = false;
         if(cadena.charAt(0) == '0'){
@@ -149,7 +147,6 @@ public class ValidarT {
     public String getTipo() {
         return tipo;
     }
-
     public void setTipo(String tipo){
         this.tipo = tipo;
     }

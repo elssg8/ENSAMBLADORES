@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import PruebasLeonardo.*;
+import modelo.*;
 
 public class window extends JFrame {
     private JPanel panel;
@@ -29,15 +30,11 @@ public class window extends JFrame {
     private JButton btnSeparar;
     private JButton btnAtrasSeparar;
     private JButton btnSiguienteSeparar;
-
-
     private String nombre_archivo;
     private String ruta_archivo;
     private String archivo;
-
     private static int total_paginas;
     private static int pagina_actual;
-
     int tamaño;
     private byte imprimir = 15;
 
@@ -198,15 +195,14 @@ public class window extends JFrame {
         txtArchivoASM.setText(dato);
     }
     private void btnSelectFile(){
-        JButton btnSelectFile = new JButton("Seleccionar archivo");
+        btnSelectFile = new JButton("Open File");
         btnSelectFile.setBounds(40,400,150,30);
         panel.add(btnSelectFile);
 
-        // Agregamos el evento que va a abrir la ventana de selección de archivos
+
         ActionListener accionBoton = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 JFileChooser file_chooser = new JFileChooser();
                 FileNameExtensionFilter filtro_archivo = new FileNameExtensionFilter("ASM", "asm");
                 file_chooser.setFileFilter(filtro_archivo);
@@ -244,8 +240,13 @@ public class window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (abrio_correcto = true){
-                    clase_separar.instruccionesEquipo2();
-                    clase_separar.separarElementos();
+                    Analizador analizar;
+                    if(txtArchivoASM.getText().compareTo("") !=0){
+                        analizar = new Analizador(txtArchivoASM.getText());
+                        txtSeparacion.setText(analizar.analizaArchivo());
+                    } else {
+                        JOptionPane.showMessageDialog(null,"Aun no haz Seleccionado  ningun archivo");
+                    }
                 }
             }
         };
