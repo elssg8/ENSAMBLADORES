@@ -3,8 +3,7 @@ package pruebasJose;
 //import PruebasLeonardo.Separar;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,7 +20,7 @@ public class window extends JFrame {
     private JLabel lblSeparar;
     private JLabel lblIden;
     private JLabel lblPagActual;
-    private JLabel lblPagE;
+    private JLabel lbl_pagina_elementos;
     private JTextArea txtArchivoASM;
     private JTextArea txtIndentificacion;
     private JTextArea txtSeparacion;
@@ -98,22 +97,25 @@ public class window extends JFrame {
         lblIden.setFont(titulos);
 
         lblPagActual = new JLabel();
-        lblPagActual.setBounds(450, 650, 150, 30);
+        lblPagActual.setBounds(310,380, 150, 30);
 
-        lblPagE = new JLabel();
-        lblPagE.setBounds(850, 650, 150, 30);
+        lbl_pagina_elementos = new JLabel();
+        lbl_pagina_elementos.setBounds(850, 650, 150, 30);
 
         panel.add(lblASM);
         panel.add(lblSeparar);
         panel.add(lblIden);
         panel.add(lblPagActual); // CHECAR
-        panel.add(lblPagE); // CHECAR
+        panel.add(lbl_pagina_elementos); // CHECAR
     }
 
     public void initTextAreaArchivoASM() {
         txtArchivoASM = new JTextArea();
         txtArchivoASM.setBounds(40, 60, 400, 300);
         txtArchivoASM.setEditable(false);
+        Border border = BorderFactory.createLineBorder(Color.BLACK);
+        txtArchivoASM.setBorder(BorderFactory.createCompoundBorder(border,
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
         panel.add(txtArchivoASM);
     }
@@ -121,6 +123,9 @@ public class window extends JFrame {
     public void initTextAreaSeparacion() {
         txtSeparacion = new JTextArea();
         txtSeparacion.setBounds(500, 60, 400, 300);
+        Border border = BorderFactory.createLineBorder(Color.BLACK);
+        txtSeparacion.setBorder(BorderFactory.createCompoundBorder(border,
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
         panel.add(txtSeparacion);
     }
@@ -128,6 +133,9 @@ public class window extends JFrame {
     public void initTextAreaIndentifiacion() {
         txtIndentificacion = new JTextArea();
         txtIndentificacion.setBounds(1000, 60, 400, 300);
+        Border border = BorderFactory.createLineBorder(Color.BLACK);
+        txtIndentificacion.setBorder(BorderFactory.createCompoundBorder(border,
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
         panel.add(txtIndentificacion);
     }
