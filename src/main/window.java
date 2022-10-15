@@ -19,31 +19,21 @@ public class window extends JFrame {
     private JLabel lblASM;
     private JLabel lblSeparar;
     private JLabel lblPagActual;
-    private JLabel lbl_pagina_elementos;
+    private JLabel lblSepararPagActual;
     private JTextArea txtArchivoASM;
-    private JTextArea txtIndentificacion;
     public static JTextArea txtSeparacion;
     private JButton btnSelectFile;
-
     private JButton btnSeparar;
     private JButton btnAtrasSeparar;
     private JButton btnSiguienteSeparar;
-
-
-    private String nombre_archivo;
-    private String ruta_archivo;
+    private String fileName;
+    private String path;
     private String archivo;
-
-    private static int total_paginas;
-    private static int pagina_actual;
-
-    int tamaño;
-    private byte imprimir = 15;
-
+    private  int total_paginas;
+    private  int pagina_actual;
+    public int tamanio;
+    private byte numLineasAImprimir = 15;
     private boolean abrio_correcto = false;
-    Separar clase_separar = new Separar(this);
-
-
     public static void main(String[] args) {
         window wn = new window();
         wn.setVisible(true);
@@ -96,13 +86,15 @@ public class window extends JFrame {
         lblPagActual = new JLabel();
         lblPagActual.setBounds(350,370, 150, 30);
 
-        lbl_pagina_elementos = new JLabel();
-        lbl_pagina_elementos.setBounds(850, 650, 150, 30);
+
+        lblSepararPagActual = new JLabel();
+        lblSepararPagActual.setBounds(700,370,150,30);
+
 
         panel.add(lblASM);
         panel.add(lblSeparar);
-        panel.add(lblPagActual); // CHECAR
-        panel.add(lbl_pagina_elementos); // CHECAR
+        panel.add(lblPagActual);
+        panel.add(lblSepararPagActual);
     }
 
     public void initTextAreaArchivoASM() {
@@ -126,93 +118,35 @@ public class window extends JFrame {
         panel.add(txtSeparacion);
     }
 
-    public void armarArchivo() {
-        int cont = 1;
-        total_paginas = 1;
-        tamaño = archivo.length();
-
-        for (int i = 0; i < tamaño; i++) {
-            if (archivo.charAt(i) == '\n') {
-                if (cont == imprimir) {
-                    total_paginas++;
-                    cont = 1;
-                } else {
-                    cont++;
-                }
-            }
-        }
-        pagina_actual = 1;
-        mostrarArchivo();
-        lblPagActual.setText(pagina_actual + "/" + total_paginas);
-        clase_separar.archivo = archivo;
-
-        abrio_correcto = true;
-    }
-    public void mostrarArchivo(){
-        int cont = 1;
-        int renglon_objetivo = pagina_actual;
-        int renglon_buscador = 1;
-        String pagina = "";
-        int i = 0;
-
-        while (renglon_buscador < renglon_objetivo){
-            if (archivo.charAt(i) == '\n'){
-                if (cont == imprimir){
-                    renglon_buscador++;
-                    cont = 1;
-                }else {
-                    cont++;
-                }
-            }
-            i++;
-        }
-
-
-        while (renglon_buscador <= renglon_objetivo && i < tamaño){
-            pagina += archivo.charAt(i);
-            if (archivo.charAt(i) == '\n'){
-                if (cont == imprimir){
-                    renglon_buscador++;
-                    cont = 1;
-                }else {
-                    cont++;
-                }
-            }
-            i++;
-        }
-        txtArchivoASM.setText(pagina);
-        //mostrarASM(pagina);
-    }
-
-    public void mostrarASM(String dato){//Metodo que nos sirve para ser utilizado en otras clases y mostrar texto en el textArea
-        txtArchivoASM.setText(dato);
-    }
     private void btnSelectFile(){
-        JButton btnSelectFile = new JButton("Seleccionar archivo");
+        btnSelectFile = new JButton("Open File");
         btnSelectFile.setBounds(40,400,150,30);
+        btnSelectFile.setFont(new Font("Times New Roman",Font.BOLD,16));
         panel.add(btnSelectFile);
 
-        // Agregamos el evento que va a abrir la ventana de selección de archivos
         ActionListener accionBoton = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JFileChooser file_chooser = new JFileChooser();
+                JFileChooser file_chooser = new JFileChooser("C:/");
+                // Indicamos la extension del archivo .asm
                 FileNameExtensionFilter filtro_archivo = new FileNameExtensionFilter("ASM", "asm");
                 file_chooser.setFileFilter(filtro_archivo);
 
                 int option = file_chooser.showOpenDialog(null);
                 if(option == JFileChooser.APPROVE_OPTION){
                     File archivoSeleccionado = file_chooser.getSelectedFile();
+                    
                     if (archivoSeleccionado.getName().endsWith(".asm")){
-                        nombre_archivo = file_chooser.getSelectedFile().getName();
-                        ruta_archivo = file_chooser.getSelectedFile().toString();
-                        try(FileReader fr = new FileReader(archivoSeleccionado)){
+                        fileName = file_chooser.getSelectedFile().getName();
+                        path = file_chooser.getSelectedFile().toString();
+
+                        try(FileReader fileReader = new FileReader(archivoSeleccionado)){
                             archivo = "";
-                            int valor = fr.read();
+                            int valor = fileReader.read();
                             while (valor != -1){
                                 archivo = archivo + (char) valor;
-                                valor = fr.read();
+                                valor = fileReader.read();
                             }
                             armarArchivo();
                         }  catch (IOException ex) {
@@ -250,11 +184,10 @@ public class window extends JFrame {
 
 
     private void btnSiguienteSeparar() {
-        JButton btn_siguiente = new JButton("→");
-        btn_siguiente.setFont(new Font("", Font.PLAIN, 25));
-        btn_siguiente.setBounds(830,400,70,30);
-        panel.add(btn_siguiente);
-
+        btnSiguienteSeparar = new JButton("→");
+        btnSiguienteSeparar.setFont(new Font("", Font.PLAIN, 25));
+        btnSiguienteSeparar.setBounds(830,400,70,30);
+        panel.add(btnSiguienteSeparar);
         ActionListener action = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -262,14 +195,14 @@ public class window extends JFrame {
             }
         };
 
-        btn_siguiente.addActionListener(action);
+        btnSiguienteSeparar.addActionListener(action);
     }
 
     private void btnAtrasSeparar(){
-        JButton btn_atras = new JButton("←");
-        btn_atras.setFont(new Font("", Font.PLAIN, 25));
-        btn_atras.setBounds(750,400,70,30);
-        panel.add(btn_atras);
+        btnAtrasSeparar = new JButton("←");
+        btnAtrasSeparar.setFont(new Font("", Font.PLAIN, 25));
+        btnAtrasSeparar.setBounds(750,400,70,30);
+        panel.add(btnAtrasSeparar);
 
         ActionListener action = new ActionListener() {
             @Override
@@ -278,7 +211,7 @@ public class window extends JFrame {
             }
         };
 
-        btn_atras.addActionListener(action);
+        btnAtrasSeparar.addActionListener(action);
 
     }
 
@@ -295,6 +228,7 @@ public class window extends JFrame {
                     pagina_actual--;
                     mostrarArchivo();
                     lblPagActual.setText(pagina_actual + "/" + total_paginas);
+
                 }
             }
         };
@@ -321,5 +255,63 @@ public class window extends JFrame {
     }
 
 
+
+    // Metodos
+
+    public void armarArchivo() {
+        int cont = 1;
+        total_paginas = 1;
+        tamanio = archivo.length();
+
+        for (int i = 0; i < tamanio; i++) {
+            if (archivo.charAt(i) == '\n') {
+                if (cont == 15) {
+                    total_paginas++;
+                    cont = 1;
+                } else {
+                    cont++;
+                }
+            }
+        }
+        pagina_actual = 1;
+        mostrarArchivo();
+        lblPagActual.setText(pagina_actual + "/" + total_paginas);
+        lblPagActual.setFont(new Font("Times New Roman", Font.BOLD,18));
+        abrio_correcto = true;
+    }
+    public void mostrarArchivo(){
+        int cont = 1;
+        int renglon_objetivo = pagina_actual;
+        int renglon_buscador = 1;
+        String pagina = "";
+        int i = 0;
+
+        while (renglon_buscador < renglon_objetivo){
+            if (archivo.charAt(i) == '\n'){
+                if (cont == numLineasAImprimir){
+                    renglon_buscador++;
+                    cont = 1;
+                }else {
+                    cont++;
+                }
+            }
+            i++;
+        }
+
+
+        while (renglon_buscador <= renglon_objetivo && i < tamanio){
+            pagina += archivo.charAt(i);
+            if (archivo.charAt(i) == '\n'){
+                if (cont == numLineasAImprimir){
+                    renglon_buscador++;
+                    cont = 1;
+                }else {
+                    cont++;
+                }
+            }
+            i++;
+        }
+        txtArchivoASM.setText(pagina);
+    }
 
 }
