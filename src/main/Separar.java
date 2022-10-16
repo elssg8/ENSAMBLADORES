@@ -84,7 +84,7 @@ public class Separar{
         lexemas = "";
         fin_archivo = false;
         error = false;
-        filesize = w.tamaño;
+        //filesize = w.tamaño;
         while (!(fin_archivo)) {
             renglon_anterior = renglon;
             columna = contar_columna;
@@ -690,7 +690,7 @@ public class Separar{
                     break;
                 case 70:
                     c=lee_car();
-                    if (c == 10 || a_a == w.tamaño) {
+                    if (c == 10 || a_a == w.tamanio) {
                         ESTADO = 71;
                     } else {
                         ESTADO = 70;

@@ -11,10 +11,6 @@ public class Analizador {
     int tamL;
     static int paginasE;
     static int paginaE;
-    int paginasL;
-    int paginaL;
-    String elementos="";
-    String lexemas="";
     private String txt;
     private char txtCompleto [];
     private ArrayList<ValidarT> palabras;
