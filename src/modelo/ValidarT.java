@@ -51,7 +51,8 @@ public class ValidarT {
     }// Fin constructor
 
 
-    public void validarPseudoInstrucciones(String palabra){
+
+   public void validarPseudoInstrucciones(String palabra){
         for (String a : psudoInstrucciones) {
             if(palabra.toLowerCase().equalsIgnoreCase(a)){
                 this.tipo = "\tPseudoinstruccion";
@@ -97,21 +98,25 @@ public class ValidarT {
     }
     public  void validarHexadecimal(String cadena){
         boolean validarHex = false;
-        if(cadena.charAt(0) == '0'){
-            for (int j = 0; j < cadena.length(); j++) {
-                if (cadena.charAt(j) == '1' || cadena.charAt(j) == '2' || cadena.charAt(j) == '3' || cadena.charAt(j) == '4' || cadena.charAt(j) == '5' || cadena.charAt(j) == '6' || cadena.charAt(j) == '7' || cadena.charAt(j) == '8' || cadena.charAt(j) == '9' || cadena.charAt(j) == '0' || cadena.charAt(j) == 'A' || cadena.charAt(j) == 'B' || cadena.charAt(j) == 'C' || cadena.charAt(j) == 'D' || cadena.charAt(j) == 'E' || cadena.charAt(j) == 'F' || cadena.charAt(j) == 'H' || cadena.charAt(j)=='h' || cadena.charAt(j) == 'a' || cadena.charAt(j) == 'b' || cadena.charAt(j) == 'c' || cadena.charAt(j) == 'd' || cadena.charAt(j) == 'e' || cadena.charAt(j) == 'f') {
+
+        if(cadena.toCharArray()[0] == '0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
+            for (int j = 0 ; j < cadena.length(); j++){
+                if(cadena.toLowerCase().toCharArray()[j] == '1' || cadena.toLowerCase().toCharArray()[j] == '2' || cadena.toLowerCase().toCharArray()[j] == '3' || cadena.toLowerCase().toCharArray()[j] =='4'
+                || cadena.toLowerCase().toCharArray()[j] == '5' || cadena.toLowerCase().toCharArray()[j] == '6' || cadena.toLowerCase().toCharArray()[j] == '7' || cadena.toLowerCase().toCharArray()[j] =='8'
+                || cadena.toLowerCase().toCharArray()[j] == '9' || cadena.toLowerCase().toCharArray()[j] == 'a' || cadena.toLowerCase().toCharArray()[j] == 'b' || cadena.toLowerCase().toCharArray()[j] =='c'
+                || cadena.toLowerCase().toCharArray()[j] == 'd' || cadena.toLowerCase().toCharArray()[j] == 'e' || cadena.toLowerCase().toCharArray()[j] == 'f'){
                     validarHex = esPar(cadena.length()-2);
                 } else {
                     validarHex = false;
                     break;
                 }
-
-            } // Fin for
+            }
         }
 
         if(validarHex){
             setTipo("\tHexadecimal");
         }
+
     }
 
 
