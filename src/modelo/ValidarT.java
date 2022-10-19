@@ -18,15 +18,16 @@ public class ValidarT {
         this.tipo = "";
 
         validarPseudoInstrucciones(this.palabra);
+        validarPseudoCompletas(this.palabra);
         validarInstrucciones(this.palabra);
         validarRegistro(this.palabra);
         validarNumeroDecimal(this.palabra);
         validarHexadecimal(this.palabra);
         validarBinario(this.palabra);
+        validarEtiquetas(this.palabra);
 
         //Constante de caracter
         if(palabra.toCharArray()[0]=='\'' || palabra.toCharArray()[0]=='\"' || palabra.toCharArray()[palabra.length()-1] == '\"') {
-
             this.tipo = "\tConstante caracter";
         }
         //Espacios
@@ -36,9 +37,9 @@ public class ValidarT {
         // Ignoramos comentarios
         if (palabra.toCharArray()[0]==';'){
             this.tipo ="";
-        }
+        }//ESTA MADRE NO HACE NADA
 
-        // Validar espacio(s)
+        /* Validar espacio(s)
         pattern = Pattern.compile("\\s", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(this.palabra);
 
@@ -46,7 +47,7 @@ public class ValidarT {
 
         if (validarEspacio){
             this.tipo ="";
-        }
+        }*/
 
     }// Fin constructor
 
@@ -60,10 +61,10 @@ public class ValidarT {
         }
     }
 
-    public void validarPseudoCompletas(){
+    public void validarPseudoCompletas(String palabra){
         for (String a : pseudoInstruccionesCompletas) {
             if(palabra.toLowerCase().equalsIgnoreCase(a)){
-                this.tipo ="\tPseudo Instrucciones";
+                this.tipo ="\tPseudoinstruccion";
             }
         }
     }
