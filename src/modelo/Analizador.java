@@ -67,7 +67,12 @@ public class Analizador {
                             break;
                         }
 
-                        if(palabra.equalsIgnoreCase("DATA") || palabra.equalsIgnoreCase(".DATA")) {
+                        if(palabra.equalsIgnoreCase("DATA")) {
+                            palabra = "data segment";
+                            palabras.add(new ValidarT(palabra));
+                            palabra ="";
+                            break;
+                        } else if (palabra.equalsIgnoreCase(".DATA")) {
                             palabra = ".data segment";
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
