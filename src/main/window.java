@@ -129,37 +129,6 @@ public class window extends JFrame {
         ActionListener accionBoton = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-               /* JFileChooser file_chooser = new JFileChooser("C:/");
-                // Indicamos la extension del archivo .asm
-                FileNameExtensionFilter filtro_archivo = new FileNameExtensionFilter("ASM", "asm");
-                file_chooser.setFileFilter(filtro_archivo);
-
-                int option = file_chooser.showOpenDialog(null);
-                if(option == JFileChooser.APPROVE_OPTION){
-                    File archivoSeleccionado = file_chooser.getSelectedFile();
-
-                    if (archivoSeleccionado.getName().endsWith(".asm")){
-                        fileName = file_chooser.getSelectedFile().getName();
-                        path = file_chooser.getSelectedFile().toString();
-
-                        try(FileReader fileReader = new FileReader(archivoSeleccionado)){
-                            archivo = "";
-                            int valor = fileReader.read();
-                            while (valor != -1){
-                                archivo = archivo + (char) valor;
-                                valor = fileReader.read();
-                            }
-                            ///////////////////////////////////
-
-                            armarArchivo();
-                        }  catch (IOException ex) {
-                            JOptionPane.showMessageDialog(null, "Error al abrir el archivo");
-                        }
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Archivo no valido");
-                    }
-                }*/
                 buffer();
             }
         };

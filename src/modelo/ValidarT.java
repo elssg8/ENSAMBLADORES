@@ -11,8 +11,9 @@ public class ValidarT {
     private String instruccionesE02 [] = {"std","aad","cld","cwd","iret","movsw","div","imul","pop","idiv","shl","xchg","add","lds","jns","js","loopne","jae","jcxz","jl"};
     private String registros [] = {"ah","al","ax","bh","bl","bx","ch","cl","cx","dh","dl","dx","sp","bp","si","di","cs","ds", "es", "ss", "ip"};
 
-    private Pattern pattern;
-    private Matcher matcher;
+    public ValidarT(){
+
+    }
     public ValidarT(String palabra){
         this.palabra = palabra;
         this.tipo = "";
@@ -38,16 +39,6 @@ public class ValidarT {
         if (palabra.toCharArray()[0]==';'){
             this.tipo ="";
         }//ESTA MADRE NO HACE NADA
-
-        /* Validar espacio(s)
-        pattern = Pattern.compile("\\s", Pattern.CASE_INSENSITIVE);
-        matcher = pattern.matcher(this.palabra);
-
-        boolean validarEspacio = matcher.find();
-
-        if (validarEspacio){
-            this.tipo ="";
-        }*/
 
     }// Fin constructor
 
@@ -86,20 +77,42 @@ public class ValidarT {
     }
 
     public void validarNumeroDecimal(String palabra){
-        if(palabra.toCharArray()[0]=='0'|| palabra.toCharArray()[0]=='1'|| palabra.toCharArray()[0]=='2'||palabra.toCharArray()[0]=='3'||
-                palabra.toCharArray()[0]=='4'||palabra.toCharArray()[0]=='5'||palabra.toCharArray()[0]=='6'||palabra.toCharArray()[0]=='7'||
-                palabra.toCharArray()[0]=='8'||palabra.toCharArray()[0]=='9') {
+        boolean isNumeric = (palabra != null && palabra.matches("[0-9]+"));
+
+        if(isNumeric){
             setTipo("\tNumero Decimal");
         }
-
     }
+
 
     public static boolean esPar(int numero){
         return numero % 2 == 0;
     }
+
+    //044H		Simbolo
+    //02h	HEX
+    //0abh		Simbolo
+
+    public static void main(String[] args) {
+        ValidarT m = new ValidarT();
+        m.validarHexadecimal("0Ah");
+        System.out.println(m.getTipo());
+    }
+
     public  void validarHexadecimal(String cadena){
         boolean validarHex = false;
+        if(cadena.toCharArray()[0] == '0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
+            if(cadena.toLowerCase().matches("[0-9a-h]")){
+               validarHex = true;
+                //validarHex = esPar(cadena.length()-1);
+            }
+        }
 
+        if(validarHex){
+            setTipo("HEX");
+        }
+
+        /*
         if(cadena.toCharArray()[0] == '0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
             for (int j = 0 ; j < cadena.length(); j++){
                 if(cadena.toLowerCase().toCharArray()[j] == '1' || cadena.toLowerCase().toCharArray()[j] == '2' || cadena.toLowerCase().toCharArray()[j] == '3' || cadena.toLowerCase().toCharArray()[j] =='4'
@@ -117,6 +130,8 @@ public class ValidarT {
         if(validarHex){
             setTipo("\tHexadecimal");
         }
+
+         */
 
     }
 
