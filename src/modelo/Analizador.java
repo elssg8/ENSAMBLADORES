@@ -9,40 +9,39 @@ public class Analizador {
     static int imprimir=15;
     static int tamE;
     int tamL;
-    static int paginasE;
-    static int paginaE;
+    static int total_paginas;
+    static int pagina_actual;
     private String txt;
     private char txtCompleto [];
     private ArrayList<ValidarT> palabras;
     private ArrayList<String> lineas;
     private static String resultado;
-    public Analizador(String texto) {
-        this.txt = texto;
+    public Analizador(ArrayList<String> lineas) {
+        this.lineas = lineas;
     }
     public void analizaArchivo() {
 
-        txtCompleto = txt.toCharArray();
+        //txtCompleto = txt.toCharArray();
 
-        String linea = "";
-        this.lineas = new ArrayList<String>();
+        //String linea = "";
+        //this.lineas = new ArrayList<>();
 
-        String palabra;
-
-        palabra = "";
-        this.palabras =  new ArrayList<ValidarT>();
+        String palabra = "";
+        this.palabras =  new ArrayList<>();
 
         char[] aux = {};
 
         //DIVIDIR EN LINEAS
-        for(int i =0; i<txtCompleto.length; i++) {
+        /*for(int i =0; i<txtCompleto.length; i++) {
             if(txtCompleto[i]=='\n') {
                 lineas.add(linea);
                 linea = "";
-                continue;
+                //continue;
             }else {
-                linea = linea + txtCompleto[i];
+                linea += txtCompleto[i];
             }
-        }// Fin divide lineas
+        }// Fin divide lineas*/
+
 
         for(int i = 0; i<lineas.size();i++) {
             if(palabra !="") {
@@ -96,7 +95,8 @@ public class Analizador {
                             if(palabra !="") {
                                 palabras.add(new ValidarT(palabra));
                                 palabra = "";
-                            }							break;
+                            }
+                            break;
                         }
 
                     }
@@ -114,36 +114,38 @@ public class Analizador {
         resultado = "";
         for(int j =0; j<palabras.size(); j++) {
             resultado = resultado + palabras.get(j).toString();
-            System.out.println(resultado);
         }
+        //System.out.println(resultado);
 
         construirElementos();
     }
 
     public static void construirElementos(){
         int cont=1;
-        paginasE=1;
+        total_paginas =1;
         tamE=resultado.length();
+
         for (int i = 0; i < tamE; i++) {
             if (resultado.charAt(i) == '\n') {
-                if (cont == imprimir) {
-                    paginasE++;
+                if (cont == 15) {
+                    total_paginas++;
                     cont=1;
                 }else{
                     cont++;
                 }
             }
         }
-        paginaE=1;
+        pagina_actual =1;
         mostrarElementos();
     }
 
     public static void mostrarElementos(){
         int cont=1;
-        int renglonObjetivo=paginaE;
+        int renglonObjetivo= pagina_actual;
         int renglonBuscador=1;
         String pag="";
         int i=0;
+
         while(renglonBuscador<renglonObjetivo){
             if (resultado.charAt(i) == '\n') {
                 if(cont==imprimir){
@@ -155,6 +157,7 @@ public class Analizador {
             }
             i++;
         }
+
         while(renglonBuscador<=renglonObjetivo&&i<tamE){
             pag += resultado.charAt(i);
             if (resultado.charAt(i) == '\n') {
@@ -172,16 +175,16 @@ public class Analizador {
     }
 
     public static void btnAtras() {
-        if(paginaE>1){
-            paginaE--;
+        if(pagina_actual >1){
+            pagina_actual--;
             mostrarElementos();
             //lblPaginaE.setText(paginaE+"/"+paginasE);
         }
     }
 
     public static void btnSiguiente() {
-        if(paginaE<paginasE){
-            paginaE++;
+        if(pagina_actual < total_paginas){
+            pagina_actual++;
             mostrarElementos();
             //lblPaginaE.setText(paginaE+"/"+paginasE);
         }

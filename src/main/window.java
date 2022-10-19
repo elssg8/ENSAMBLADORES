@@ -8,9 +8,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import modelo.Analizador;
 
@@ -34,6 +34,7 @@ public class window extends JFrame {
     public int tamanio;
     private byte numLineasAImprimir = 15;
     private boolean abrio_correcto = false;
+    ArrayList<String> lineas = new ArrayList<>();
     public static void main(String[] args) {
         window wn = new window();
         wn.setVisible(true);
@@ -60,7 +61,8 @@ public class window extends JFrame {
         btnAtrasSeparar();
         btnPaginaAnterior();
         btnPaginaSiguiente();
-  
+        //buffer();
+
     }
 
     public void initPanel() {
@@ -128,7 +130,7 @@ public class window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JFileChooser file_chooser = new JFileChooser("C:/");
+               /* JFileChooser file_chooser = new JFileChooser("C:/");
                 // Indicamos la extension del archivo .asm
                 FileNameExtensionFilter filtro_archivo = new FileNameExtensionFilter("ASM", "asm");
                 file_chooser.setFileFilter(filtro_archivo);
@@ -136,7 +138,7 @@ public class window extends JFrame {
                 int option = file_chooser.showOpenDialog(null);
                 if(option == JFileChooser.APPROVE_OPTION){
                     File archivoSeleccionado = file_chooser.getSelectedFile();
-                    
+
                     if (archivoSeleccionado.getName().endsWith(".asm")){
                         fileName = file_chooser.getSelectedFile().getName();
                         path = file_chooser.getSelectedFile().toString();
@@ -148,15 +150,94 @@ public class window extends JFrame {
                                 archivo = archivo + (char) valor;
                                 valor = fileReader.read();
                             }
+                            ///////////////////////////////////
+
                             armarArchivo();
                         }  catch (IOException ex) {
                             JOptionPane.showMessageDialog(null, "Error al abrir el archivo");
                         }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Archivo no valido");
                     }
-                }
+                }*/
+                buffer();
             }
         };
         btnSelectFile.addActionListener(accionBoton);
+    }
+
+    public void buffer(){
+        JFileChooser file_chooser = new JFileChooser("C:/");
+        // Indicamos la extension del archivo .asm
+        FileNameExtensionFilter filtro_archivo = new FileNameExtensionFilter("ASM", "asm");
+        file_chooser.setFileFilter(filtro_archivo);
+        BufferedReader br = null;
+
+
+        int option = file_chooser.showOpenDialog(null);
+        if(option == JFileChooser.APPROVE_OPTION){
+            File archivoSeleccionado = file_chooser.getSelectedFile();
+
+            if (archivoSeleccionado.getName().endsWith(".asm")){
+                fileName = file_chooser.getSelectedFile().getName();
+                path = file_chooser.getSelectedFile().toString();
+
+                try(FileReader fileReader = new FileReader(archivoSeleccionado)){
+                    // Crear un objeto BufferedReader al que se le pasa
+                    //   un objeto FileReader con el nombre del fichero
+                    br = new BufferedReader(new FileReader(archivoSeleccionado));
+                    // Leer la primera línea, guardando en un String
+                    String texto = br.readLine();
+                    // Repetir mientras no se llegue al final del fichero
+                    while(texto != null) {
+                        // Hacer lo que sea con la línea leída
+                        // En este ejemplo sólo se muestra por consola
+                        //System.out.println(texto);
+                        lineas.add(texto);
+                        // Leer la siguiente línea
+                        texto = br.readLine();
+
+                    }
+
+
+                    archivo = "";
+                    int valor = fileReader.read();
+                    while (valor != -1){
+                        archivo = archivo + (char) valor;
+                        valor = fileReader.read();
+                    }
+                    ///////////////////////////////////
+
+                    armarArchivo();
+                }catch (FileNotFoundException ex) {
+                    System.out.println("Error: Fichero no encontrado");
+                    ex.printStackTrace();
+                }
+                catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al abrir el archivo");
+                }
+// Captura de cualquier otra excepción
+                catch(Exception ex) {
+                    System.out.println("Error de lectura del fichero");
+                    ex.printStackTrace();
+                }
+// Asegurar el cierre del fichero en cualquier caso
+                finally {
+                    try {
+                        // Cerrar el fichero si se ha podido abrir
+                        if(br != null) {
+                            br.close();
+                        }
+                    }
+                    catch (Exception ex) {
+                        System.out.println("Error al cerrar el fichero");
+                        ex.printStackTrace();
+                    }
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Archivo no valido");
+            }
+        }
     }
 
     private void btnSeparar(){
@@ -171,7 +252,7 @@ public class window extends JFrame {
                 if (abrio_correcto = true){
                     Analizador analizar;
                     if(txtArchivoASM.getText().compareTo("") !=0){
-                        analizar = new Analizador(txtArchivoASM.getText());
+                        analizar = new Analizador(lineas);
                         analizar.analizaArchivo();
                     } else {
                         JOptionPane.showMessageDialog(null,"Aun no haz Seleccionado  ningun archivo");
@@ -191,6 +272,7 @@ public class window extends JFrame {
         ActionListener action = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 Analizador.btnSiguiente();
             }
         };
@@ -207,6 +289,7 @@ public class window extends JFrame {
         ActionListener action = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 Analizador.btnAtras();
             }
         };
