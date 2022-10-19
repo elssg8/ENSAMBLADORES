@@ -60,22 +60,27 @@ public class Analizador {
                         palabra = palabra + aux[j];
 
 
-                        if(palabra.equalsIgnoreCase("STACK")) {
-                            palabra = "STACK SEGMENT";
+                        if(palabra.equalsIgnoreCase("STACK") || palabra.equalsIgnoreCase(".STACK")) {
+                            palabra = ".stack segment";
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
                         }
 
                         if(palabra.equalsIgnoreCase("DATA")) {
-                            palabra = "DATA SEGMENT";
+                            palabra = "data segment";
+                            palabras.add(new ValidarT(palabra));
+                            palabra ="";
+                            break;
+                        } else if (palabra.equalsIgnoreCase(".DATA")) {
+                            palabra = ".data segment";
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
                         }
 
-                        if(palabra.equalsIgnoreCase("CODE")) {
-                            palabra = "CODE SEGMENT";
+                        if(palabra.equalsIgnoreCase("CODE") || palabra.equalsIgnoreCase(".CODE")) {
+                            palabra = ".code segment";
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
@@ -110,12 +115,10 @@ public class Analizador {
             }
         }
 
-
         resultado = "";
         for(int j =0; j<palabras.size(); j++) {
             resultado = resultado + palabras.get(j).toString();
         }
-        //System.out.println(resultado);
 
         construirElementos();
     }
