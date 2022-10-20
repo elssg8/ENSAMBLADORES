@@ -3,7 +3,6 @@ package modelo;
 import main.window;
 
 import java.util.ArrayList;
-
 public class Analizador {
 
     static int imprimir=15;
@@ -11,8 +10,6 @@ public class Analizador {
     int tamL;
     static int total_paginas;
     static int pagina_actual;
-    private String txt;
-    private char txtCompleto [];
     private ArrayList<ValidarT> palabras;
     private ArrayList<String> lineas;
     private static String resultado;
@@ -21,27 +18,10 @@ public class Analizador {
     }
     public void analizaArchivo() {
 
-        //txtCompleto = txt.toCharArray();
-
-        //String linea = "";
-        //this.lineas = new ArrayList<>();
-
         String palabra = "";
         this.palabras =  new ArrayList<>();
 
         char[] aux = {};
-
-        //DIVIDIR EN LINEAS
-        /*for(int i =0; i<txtCompleto.length; i++) {
-            if(txtCompleto[i]=='\n') {
-                lineas.add(linea);
-                linea = "";
-                //continue;
-            }else {
-                linea += txtCompleto[i];
-            }
-        }// Fin divide lineas*/
-
 
         for(int i = 0; i<lineas.size();i++) {
             if(palabra !="") {
@@ -60,7 +40,7 @@ public class Analizador {
                         palabra = palabra + aux[j];
 
 
-                        if(palabra.equalsIgnoreCase("STACK") || palabra.equalsIgnoreCase(".STACK")) {
+                        if(palabra.equalsIgnoreCase(".STACK SEGMENT")) {
                             palabra = ".stack segment";
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
@@ -181,7 +161,6 @@ public class Analizador {
         if(pagina_actual >1){
             pagina_actual--;
             mostrarElementos();
-            //lblPaginaE.setText(paginaE+"/"+paginasE);
         }
     }
 
