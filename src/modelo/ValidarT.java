@@ -93,24 +93,37 @@ public class ValidarT {
     //02h	HEX
     //0abh		Simbolo
 
+
     public static void main(String[] args) {
         ValidarT m = new ValidarT();
-        m.validarHexadecimal("0Ah");
+        m.validarHexadecimal("044h");
         System.out.println(m.getTipo());
+
     }
 
     public  void validarHexadecimal(String cadena){
         boolean validarHex = false;
-        if(cadena.toCharArray()[0] == '0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
-            if(cadena.toLowerCase().matches("[0-9a-h]")){
-               validarHex = true;
-                //validarHex = esPar(cadena.length()-1);
+        String auxHex = cadena.toLowerCase();
+        System.out.println(""+auxHex+"|");
+
+        if(auxHex.charAt(0) == '0' && auxHex.charAt(auxHex.length()-1)=='h'){
+            for (int j = 0 ; j < cadena.length(); j++){
+                if(auxHex.charAt(j) == '1' || auxHex.charAt(j) == '2' || auxHex.charAt(j) == '3' || auxHex.charAt(j) =='4'
+                        || auxHex.charAt(j) == '5' || auxHex.charAt(j)== '6' || auxHex.charAt(j) == '7' || auxHex.charAt(j) =='8'
+                        || auxHex.charAt(j) == '9' || auxHex.charAt(j)== 'a' || auxHex.charAt(j) == 'b' || auxHex.charAt(j) =='c'
+                        || auxHex.charAt(j) == 'd' || auxHex.charAt(j)== 'e' || auxHex.charAt(j) == 'f'){
+                    validarHex = esPar(cadena.length()-2);
+                } else {
+                    validarHex = false;
+                    break;
+                }
             }
         }
 
         if(validarHex){
-            setTipo("HEX");
+            setTipo("\tHexadecimal");
         }
+
 
         /*
         if(cadena.toCharArray()[0] == '0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
@@ -131,7 +144,7 @@ public class ValidarT {
             setTipo("\tHexadecimal");
         }
 
-         */
+    */
 
     }
 
