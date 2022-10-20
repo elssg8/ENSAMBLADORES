@@ -43,7 +43,9 @@ public class ValidarT {
     }// Fin constructor
 
 
+    public void validarEspacios(String palabra){
 
+    }
    public void validarPseudoInstrucciones(String palabra){
         for (String a : psudoInstrucciones) {
             if(palabra.toLowerCase().equalsIgnoreCase(a)){
@@ -96,13 +98,24 @@ public class ValidarT {
 
     public static void main(String[] args) {
         ValidarT m = new ValidarT();
-        m.validarHexadecimal("044h");
+        m.validarHexadecimal("044FAH ");
         System.out.println(m.getTipo());
 
     }
 
     public  void validarHexadecimal(String cadena){
         boolean validarHex = false;
+        /*
+
+        if(cadena.toCharArray()[0]=='0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
+            //validarHex = true;
+            validarHex = cadena.toLowerCase().matches("[0-9a-h]+");
+        }
+
+        validarHex = esPar(cadena.length()-2);
+
+        */
+        /*
         String auxHex = cadena.toLowerCase();
         System.out.println(""+auxHex+"|");
 
@@ -119,16 +132,12 @@ public class ValidarT {
                 }
             }
         }
-
-        if(validarHex){
-            setTipo("\tHexadecimal");
-        }
+        */
 
 
-        /*
         if(cadena.toCharArray()[0] == '0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
             for (int j = 0 ; j < cadena.length(); j++){
-                if(cadena.toLowerCase().toCharArray()[j] == '1' || cadena.toLowerCase().toCharArray()[j] == '2' || cadena.toLowerCase().toCharArray()[j] == '3' || cadena.toLowerCase().toCharArray()[j] =='4'
+                if(cadena.toLowerCase().toCharArray()[j] == '0' || cadena.toLowerCase().toCharArray()[j] == '1' || cadena.toLowerCase().toCharArray()[j] == '2' || cadena.toLowerCase().toCharArray()[j] == '3' || cadena.toLowerCase().toCharArray()[j] =='4'
                 || cadena.toLowerCase().toCharArray()[j] == '5' || cadena.toLowerCase().toCharArray()[j] == '6' || cadena.toLowerCase().toCharArray()[j] == '7' || cadena.toLowerCase().toCharArray()[j] =='8'
                 || cadena.toLowerCase().toCharArray()[j] == '9' || cadena.toLowerCase().toCharArray()[j] == 'a' || cadena.toLowerCase().toCharArray()[j] == 'b' || cadena.toLowerCase().toCharArray()[j] =='c'
                 || cadena.toLowerCase().toCharArray()[j] == 'd' || cadena.toLowerCase().toCharArray()[j] == 'e' || cadena.toLowerCase().toCharArray()[j] == 'f'){
@@ -144,7 +153,7 @@ public class ValidarT {
             setTipo("\tHexadecimal");
         }
 
-    */
+
 
     }
 
