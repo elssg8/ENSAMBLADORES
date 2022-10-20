@@ -39,33 +39,27 @@ public class Analizador {
                     if(aux[j]!=' ' && aux[j]!=',' && aux[j]!='\n') {
                         palabra = palabra + aux[j];
 
-
-                        if(palabra.equalsIgnoreCase(".STACK SEGMENT")) {
+                        if(palabra.equalsIgnoreCase(".STACK")) {
                             palabra = ".stack segment";
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
                         }
 
-                        if(palabra.equalsIgnoreCase("DATA")) {
-                            palabra = "data segment";
-                            palabras.add(new ValidarT(palabra));
-                            palabra ="";
-                            break;
-                        } else if (palabra.equalsIgnoreCase(".DATA")) {
+                        if(palabra.equalsIgnoreCase(".DATA")) {
                             palabra = ".data segment";
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
                         }
 
-                        if(palabra.equalsIgnoreCase("CODE") || palabra.equalsIgnoreCase(".CODE")) {
+                        if(palabra.equalsIgnoreCase(".CODE")) {
                             palabra = ".code segment";
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
                         }
-
+                        // Parte donde se separa por coma
                         if(aux[j]=='\'') {
                             for(int k = j; k<aux.length;k++) {
                                 palabra = palabra + aux[k];
@@ -168,7 +162,6 @@ public class Analizador {
         if(pagina_actual < total_paginas){
             pagina_actual++;
             mostrarElementos();
-            //lblPaginaE.setText(paginaE+"/"+paginasE);
         }
     }
 

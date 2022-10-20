@@ -241,7 +241,6 @@ public class window extends JFrame {
         ActionListener action = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 Analizador.btnSiguiente();
             }
         };
