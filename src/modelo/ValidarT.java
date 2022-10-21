@@ -35,7 +35,7 @@ public class ValidarT {
         if(this.tipo.equalsIgnoreCase("")) {
             if(palabra.length()>10 && palabra.toCharArray()[palabra.length()-1] != ']') {
 
-                this.tipo = "Elemento no reconocido";
+                this.tipo = "Elemento no valido";
             }else {
                 this.tipo = "Simbolo";
             }

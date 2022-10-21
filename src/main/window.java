@@ -42,7 +42,7 @@ public class window extends JFrame {
 
     public window() {
         super("Análisis lexicográfico");
-        setSize(1000, 600);
+        setSize(990, 500);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -103,6 +103,7 @@ public class window extends JFrame {
         txtArchivoASM = new JTextArea();
         txtArchivoASM.setBounds(40, 60, 400, 300);
         txtArchivoASM.setEditable(false);
+        //txtArchivoASM.setFont(new Font("Arial",Font.PLAIN, 14));
         Border border = BorderFactory.createLineBorder(Color.BLACK);
         txtArchivoASM.setBorder(BorderFactory.createCompoundBorder(border,
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));

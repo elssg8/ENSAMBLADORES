@@ -62,7 +62,21 @@ public class Analizador {
                             palabra ="";
                             break;
                         }
-                        // Parte donde se separa por coma
+
+                        if(palabra.equalsIgnoreCase("BYTE")){
+                            palabra = "byte ptr";
+                            palabras.add(new ValidarT(palabra));
+                            palabra = "";
+                            break;
+                        }
+
+                        if(palabra.equalsIgnoreCase("WORD")){
+                            palabra = "word ptr";
+                            palabras.add(new ValidarT(palabra));
+                            palabra = "";
+                            break;
+                        }
+
                         if(aux[j]=='\'') {
                             for(int k = j; k<aux.length;k++) {
                                 palabra = palabra + aux[k];
