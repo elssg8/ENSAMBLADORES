@@ -47,6 +47,11 @@ public class Analizador {
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
+                        } else if (palabra.equalsIgnoreCase("STACK")) {
+                            palabra = "stack segment";
+                            palabras.add(new ValidarT(palabra));
+                            palabra ="";
+                            break;
                         }
 
                         if(palabra.equalsIgnoreCase(".DATA")) {
@@ -54,10 +59,20 @@ public class Analizador {
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
+                        } else if (palabra.equalsIgnoreCase("DATA")) {
+                            palabra = "data segment";
+                            palabras.add(new ValidarT(palabra));
+                            palabra ="";
+                            break;
                         }
 
                         if(palabra.equalsIgnoreCase(".CODE")) {
                             palabra = ".code segment";
+                            palabras.add(new ValidarT(palabra));
+                            palabra ="";
+                            break;
+                        } else if (palabra.equalsIgnoreCase("CODE")) {
+                            palabra = "code segment";
                             palabras.add(new ValidarT(palabra));
                             palabra ="";
                             break;
