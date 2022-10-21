@@ -26,26 +26,28 @@ public class ValidarT {
         validarHexadecimal(this.palabra);
         validarBinario(this.palabra);
         validarEtiquetas(this.palabra);
+        valirdarConstanteChar(this.palabra);
+        valirdarEspacios(this.palabra);
+        validarComentarios(this.palabra);
 
-        //Constante de caracter
-        if(palabra.toCharArray()[0]=='\'' || palabra.toCharArray()[0]=='\"' || palabra.toCharArray()[palabra.length()-1] == '\"') {
-            this.tipo = "\tConstante caracter";
-        }
-        //Espacios
+
+        // Si todas las validaciones anteriores son falsas entonces No se reconoce
+
+        //SI NO ES NINGUNO, PONE SIMBOLO
         if(this.tipo.equalsIgnoreCase("")) {
-            this.tipo = "\tSimbolo";
+            if(palabra.length()>10 && palabra.toCharArray()[palabra.length()-1] != ']') {
+
+                this.tipo = "Elemento no reconocido";
+            }else {
+                this.tipo = "Simbolo";
+            }
+
         }
-        // Ignoramos comentarios
-        if (palabra.toCharArray()[0]==';'){
-            this.tipo ="";
-        }//ESTA MADRE NO HACE NADA
+
 
     }// Fin constructor
 
 
-    public void validarEspacios(String palabra){
-
-    }
    public void validarPseudoInstrucciones(String palabra){
         for (String a : psudoInstrucciones) {
             if(palabra.toLowerCase().equalsIgnoreCase(a)){
@@ -181,6 +183,28 @@ public class ValidarT {
         if(cadena.toLowerCase().toCharArray()[cadena.length()-1] == ':'){
             setTipo("\tEtiqueta");
         }
+    }
+
+    public void valirdarConstanteChar(String cadena){
+        //Constante de caracter
+        if(palabra.toCharArray()[0]=='\'' || palabra.toCharArray()[0]=='\"' || palabra.toCharArray()[palabra.length()-1] == '\"') {
+            this.tipo = "\tConstante caracter";
+        }
+    }
+
+    public void valirdarEspacios(String cadena){
+        //Espacios
+        if(this.tipo.equalsIgnoreCase("")) {
+            this.tipo = "\tSimbolo";
+        }
+    }
+
+    public void validarComentarios(String cadena){
+        // Ignoramos comentarios
+        if (palabra.toCharArray()[0]==';'){
+            this.tipo ="";
+        }//ESTA MADRE NO HACE NADA
+
     }
 
 
