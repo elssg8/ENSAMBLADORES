@@ -77,9 +77,14 @@ public class ValidarT {
             }
         }
     }
+    public static void main(String[] args) {
+        ValidarT m = new ValidarT();
+        m.validarNumeroDecimal("33D");
+        System.out.println(m.getTipo());
 
+    }
     public void validarNumeroDecimal(String palabra){
-        boolean isNumeric = (palabra != null && palabra.matches("[0-9]+"));
+        boolean isNumeric = (palabra != null && palabra.toLowerCase().matches("[0-9&d]+"));
 
         if(isNumeric){
             setTipo("\tNumero Decimal");
@@ -95,26 +100,26 @@ public class ValidarT {
     //02h	HEX
     //0abh		Simbolo
 
-
+/*
     public static void main(String[] args) {
         ValidarT m = new ValidarT();
         m.validarHexadecimal("044FAH ");
         System.out.println(m.getTipo());
 
     }
-
+*/
     public  void validarHexadecimal(String cadena){
         boolean validarHex = false;
-        /*
+
 
         if(cadena.toCharArray()[0]=='0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
-            //validarHex = true;
+            validarHex = true;
             validarHex = cadena.toLowerCase().matches("[0-9a-h]+");
         }
 
         validarHex = esPar(cadena.length()-2);
 
-        */
+
         /*
         String auxHex = cadena.toLowerCase();
         System.out.println(""+auxHex+"|");
@@ -134,7 +139,7 @@ public class ValidarT {
         }
         */
 
-
+/*
         if(cadena.toCharArray()[0] == '0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
             for (int j = 0 ; j < cadena.length(); j++){
                 if(cadena.toLowerCase().toCharArray()[j] == '0' || cadena.toLowerCase().toCharArray()[j] == '1' || cadena.toLowerCase().toCharArray()[j] == '2' || cadena.toLowerCase().toCharArray()[j] == '3' || cadena.toLowerCase().toCharArray()[j] =='4'
@@ -152,7 +157,7 @@ public class ValidarT {
         if(validarHex){
             setTipo("\tHexadecimal");
         }
-
+*/
 
 
     }
