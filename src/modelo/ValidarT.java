@@ -93,12 +93,29 @@ public class ValidarT {
 
     public  void validarHexadecimal(String cadena){
         boolean validarHex = false;
-
+        /*
         if(cadena.toCharArray()[0]=='0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
             validarHex = cadena.toLowerCase().matches("[0-9a-fh]+");
         }
 
         validarHex = esPar(cadena.length()-2);
+        if(validarHex){
+            setTipo("\tHexadecimal");
+        }
+
+         */
+
+        if(palabra.toCharArray()[0]== '0' && (palabra.toCharArray()[palabra.length()-1] == 'H' || palabra.toCharArray()[palabra.length()-1] == 'h')) {
+            for (int i = 0; i < palabra.length(); i++) {
+                if(palabra.toLowerCase().toCharArray()[i] == '0'|| palabra.toLowerCase().toCharArray()[i] == '1' || palabra.toLowerCase().toCharArray()[i]=='2'|| palabra.toLowerCase().toCharArray()[i]=='3'
+                || palabra.toLowerCase().toCharArray()[i]=='4' || palabra.toLowerCase().toCharArray()[i]=='5'||palabra.toLowerCase().toCharArray()[i]=='6'||palabra.toLowerCase().toCharArray()[i]=='7'||palabra.toLowerCase().toCharArray()[i]=='8'
+                || palabra.toLowerCase().toCharArray()[i]=='9' || palabra.toLowerCase().toCharArray()[i]=='a'|| palabra.toLowerCase().toCharArray()[i]=='b'|| palabra.toLowerCase().toCharArray()[i]=='c'|| palabra.toLowerCase().toCharArray()[i]=='d'
+                || palabra.toLowerCase().toCharArray()[i]=='e'|| palabra.toLowerCase().toCharArray()[i]=='f'){
+                    validarHex = esPar(cadena.length()-2);
+                }
+            }
+        }
+
         if(validarHex){
             setTipo("\tHexadecimal");
         }
