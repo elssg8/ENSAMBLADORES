@@ -32,8 +32,6 @@ public class ValidarT {
 
 
         // Si todas las validaciones anteriores son falsas entonces No se reconoce
-
-        //SI NO ES NINGUNO, PONE SIMBOLO
         if(this.tipo.equalsIgnoreCase("")) {
             if(palabra.length()>10 && palabra.toCharArray()[palabra.length()-1] != ']') {
 
@@ -79,14 +77,9 @@ public class ValidarT {
             }
         }
     }
-    public static void main(String[] args) {
-        ValidarT m = new ValidarT();
-        m.validarNumeroDecimal("33D");
-        System.out.println(m.getTipo());
 
-    }
     public void validarNumeroDecimal(String palabra){
-        boolean isNumeric = (palabra != null && palabra.toLowerCase().matches("[0-9&d]+"));
+        boolean isNumeric = (palabra != null && palabra.toLowerCase().matches("[0-9d]+"));
 
         if(isNumeric){
             setTipo("\tNumero Decimal");
@@ -98,70 +91,17 @@ public class ValidarT {
         return numero % 2 == 0;
     }
 
-    //044H		Simbolo
-    //02h	HEX
-    //0abh		Simbolo
-
-/*
-    public static void main(String[] args) {
-        ValidarT m = new ValidarT();
-        m.validarHexadecimal("044FAH ");
-        System.out.println(m.getTipo());
-
-    }
-*/
     public  void validarHexadecimal(String cadena){
         boolean validarHex = false;
 
-
         if(cadena.toCharArray()[0]=='0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
-            validarHex = true;
-            validarHex = cadena.toLowerCase().matches("[0-9a-h]+");
+            validarHex = cadena.toLowerCase().matches("[0-9a-fh]+");
         }
 
         validarHex = esPar(cadena.length()-2);
-
-
-        /*
-        String auxHex = cadena.toLowerCase();
-        System.out.println(""+auxHex+"|");
-
-        if(auxHex.charAt(0) == '0' && auxHex.charAt(auxHex.length()-1)=='h'){
-            for (int j = 0 ; j < cadena.length(); j++){
-                if(auxHex.charAt(j) == '1' || auxHex.charAt(j) == '2' || auxHex.charAt(j) == '3' || auxHex.charAt(j) =='4'
-                        || auxHex.charAt(j) == '5' || auxHex.charAt(j)== '6' || auxHex.charAt(j) == '7' || auxHex.charAt(j) =='8'
-                        || auxHex.charAt(j) == '9' || auxHex.charAt(j)== 'a' || auxHex.charAt(j) == 'b' || auxHex.charAt(j) =='c'
-                        || auxHex.charAt(j) == 'd' || auxHex.charAt(j)== 'e' || auxHex.charAt(j) == 'f'){
-                    validarHex = esPar(cadena.length()-2);
-                } else {
-                    validarHex = false;
-                    break;
-                }
-            }
-        }
-        */
-
-/*
-        if(cadena.toCharArray()[0] == '0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
-            for (int j = 0 ; j < cadena.length(); j++){
-                if(cadena.toLowerCase().toCharArray()[j] == '0' || cadena.toLowerCase().toCharArray()[j] == '1' || cadena.toLowerCase().toCharArray()[j] == '2' || cadena.toLowerCase().toCharArray()[j] == '3' || cadena.toLowerCase().toCharArray()[j] =='4'
-                || cadena.toLowerCase().toCharArray()[j] == '5' || cadena.toLowerCase().toCharArray()[j] == '6' || cadena.toLowerCase().toCharArray()[j] == '7' || cadena.toLowerCase().toCharArray()[j] =='8'
-                || cadena.toLowerCase().toCharArray()[j] == '9' || cadena.toLowerCase().toCharArray()[j] == 'a' || cadena.toLowerCase().toCharArray()[j] == 'b' || cadena.toLowerCase().toCharArray()[j] =='c'
-                || cadena.toLowerCase().toCharArray()[j] == 'd' || cadena.toLowerCase().toCharArray()[j] == 'e' || cadena.toLowerCase().toCharArray()[j] == 'f'){
-                    validarHex = esPar(cadena.length()-2);
-                } else {
-                    validarHex = false;
-                    break;
-                }
-            }
-        }
-
         if(validarHex){
             setTipo("\tHexadecimal");
         }
-*/
-
-
     }
 
 
