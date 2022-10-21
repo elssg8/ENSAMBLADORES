@@ -17,6 +17,9 @@ public class Analizador {
         this.lineas = lineas;
     }
     public void analizaArchivo() {
+        //String linea = "";
+        //this.lineas = new ArrayList<String>();
+
 
         String palabra = "";
         this.palabras =  new ArrayList<>();
