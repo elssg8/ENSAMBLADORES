@@ -19,7 +19,7 @@ public class ValidarT {
         this.tipo = "";
 
         validarPseudoInstrucciones(this.palabra);
-        validarPseudoCompletas(this.palabra);
+        //validarPseudoCompletas(this.palabra);
         validarInstrucciones(this.palabra);
         validarRegistro(this.palabra);
         validarNumeroDecimal(this.palabra);
@@ -47,11 +47,19 @@ public class ValidarT {
 
 
    public void validarPseudoInstrucciones(String palabra){
-        for (String a : psudoInstrucciones) {
-            if(palabra.toLowerCase().equalsIgnoreCase(a)){
+            if(palabra.equalsIgnoreCase("stack segment") || palabra.equalsIgnoreCase(".stack")
+                    || palabra.equalsIgnoreCase(".stack segment") || palabra.equalsIgnoreCase("data segment")
+                    || palabra.equalsIgnoreCase(".data") || palabra.equalsIgnoreCase(".data segment")
+                    || palabra.equalsIgnoreCase("code segment") || palabra.equalsIgnoreCase(".code")
+                    || palabra.equalsIgnoreCase(".code segment") || palabra.equalsIgnoreCase("dw")
+                    || palabra.equalsIgnoreCase("db") || palabra.equalsIgnoreCase("equ")
+                    || (palabra.startsWith("dup") && palabra.endsWith(")")) || palabra.equalsIgnoreCase("macro")
+                    || palabra.equalsIgnoreCase("endm") || palabra.equalsIgnoreCase("proc")
+                    || palabra.equalsIgnoreCase("endp") || palabra.equalsIgnoreCase("ends")
+                    || (palabra.startsWith("DUP") && palabra.endsWith(")")) || palabra.equalsIgnoreCase("byte ptr")
+                    || palabra.equalsIgnoreCase("word ptr")){
                 this.tipo = "\tPseudoinstruccion";
             }
-        }
     }
 
     public void validarPseudoCompletas(String palabra){
