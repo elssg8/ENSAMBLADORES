@@ -148,7 +148,6 @@ public class ValidarT {
     }
 
     public void valirdarEspacios(String cadena){
-        //Espacios
         if(this.tipo.equalsIgnoreCase("")) {
             this.tipo = "\tSimbolo";
         }
