@@ -38,7 +38,7 @@ public class ValidarT {
 
     }// Fin constructor
 
-
+//stack
    public void validarPseudoInstrucciones(String palabra){
             if(palabra.equalsIgnoreCase("stack segment") || palabra.equalsIgnoreCase(".stack")
                     || palabra.equalsIgnoreCase(".stack segment") || palabra.equalsIgnoreCase("data segment")

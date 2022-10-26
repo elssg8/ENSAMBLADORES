@@ -7,7 +7,6 @@ public class Analizador {
 
     static int imprimir=15;
     static int tamE;
-    int tamL;
     static int total_paginas;
     static int pagina_actual;
     private ArrayList<ValidarT> palabras;
@@ -17,15 +16,14 @@ public class Analizador {
         this.lineas = lineas;
     }
     public void analizaArchivo() {
-        //String linea = "";
-        //this.lineas = new ArrayList<String>();
-
-
         String palabra = "";
         this.palabras =  new ArrayList<>();
 
         char[] aux = {};
 
+
+        // Separa el documento palabra por palabra
+        // Agregandolo a un arraylist (lineas)
         for(int i = 0; i<lineas.size();i++) {
             if(palabra !="") {
                 palabras.add(new ValidarT(palabra));
@@ -33,6 +31,11 @@ public class Analizador {
             }
 
 
+            /* Arreglo de tipo char
+             Para casos especificos donde requerimos detectar solo un caracter
+             Por ejemplo:
+             ; Comentarios
+             () Parentesis y comas  */
             aux = lineas.get(i).toCharArray();
 
             for(int j =0; j<aux.length; j++) {

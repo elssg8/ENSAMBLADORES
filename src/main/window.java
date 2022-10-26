@@ -1,7 +1,4 @@
 package main;
-
-//import main.Separar;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -10,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import modelo.Analizador;
 
 public class window extends JFrame {
@@ -103,7 +98,6 @@ public class window extends JFrame {
         txtArchivoASM = new JTextArea();
         txtArchivoASM.setBounds(40, 60, 400, 300);
         txtArchivoASM.setEditable(false);
-        //txtArchivoASM.setFont(new Font("Arial",Font.PLAIN, 14));
         Border border = BorderFactory.createLineBorder(Color.BLACK);
         txtArchivoASM.setBorder(BorderFactory.createCompoundBorder(border,
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));
@@ -136,13 +130,14 @@ public class window extends JFrame {
         btnSelectFile.addActionListener(accionBoton);
     }
 
+    /*
+        Selecciona el archivo .asm , iniciando desde la ruta C:/
+     */
     public void buffer(){
         JFileChooser file_chooser = new JFileChooser("C:/");
-        // Indicamos la extension del archivo .asm
         FileNameExtensionFilter filtro_archivo = new FileNameExtensionFilter("ASM", "asm");
         file_chooser.setFileFilter(filtro_archivo);
         BufferedReader br = null;
-
 
         int option = file_chooser.showOpenDialog(null);
         if(option == JFileChooser.APPROVE_OPTION){
@@ -168,7 +163,6 @@ public class window extends JFrame {
                         texto = br.readLine();
 
                     }
-
 
                     archivo = "";
                     int valor = fileReader.read();
@@ -305,10 +299,6 @@ public class window extends JFrame {
         };
         btn_pagina_siguiente.addActionListener(btn_siguiente);
     }
-
-
-
-    // Metodos
 
     public void armarArchivo() {
         int cont = 1;
