@@ -32,9 +32,7 @@ public class ValidarT {
             }else {
                 this.tipo = "Simbolo";
             }
-
         }
-
 
     }// Fin constructor
 
