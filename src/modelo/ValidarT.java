@@ -6,6 +6,15 @@ public class ValidarT {
 
     private  String palabra;
     private  String tipo;
+    private String instrucciones01 [] = {"aaa","clc","cmpsw","into","movsb","pusha","dec","idiv","int","not","adc","cmp","les","rcl","ja","jc","jge","jna","jnc","jnl"};
+    private String instrucciones03 [] = {"pushf","sti","aam","cli","daa","lahf","mul","inc","neg","push","mov","ror","sub"};
+    private String instrucciones04 [];
+    private String instrucciones05 [];
+    private String instrucciones06 [];
+    private String instrucciones07 [];
+    private String instrucciones08 [];
+    private String instrucciones09 [];
+    private String instrucciones10 [];
     private String instruccionesE02 [] = {"std","aad","cld","cwd","iret","movsw","div","imul","pop","idiv","shl","xchg","add","lds","jns","js","loopne","jae","jcxz","jl"};
     private String registros [] = {"ah","al","ax","bh","bl","bx","ch","cl","cx","dh","dl","dx","sp","bp","si","di","cs","ds", "es", "ss", "ip"};
 
@@ -84,17 +93,7 @@ public class ValidarT {
 
     public  void validarHexadecimal(String cadena){
         boolean validarHex = false;
-        /*
-        if(cadena.toCharArray()[0]=='0' && cadena.toLowerCase().toCharArray()[cadena.length()-1]=='h'){
-            validarHex = cadena.toLowerCase().matches("[0-9a-fh]+");
-        }
 
-        validarHex = esPar(cadena.length()-2);
-        if(validarHex){
-            setTipo("\tHexadecimal");
-        }
-
-         */
 
         if(palabra.toCharArray()[0]== '0' && (palabra.toCharArray()[palabra.length()-1] == 'H' || palabra.toCharArray()[palabra.length()-1] == 'h')) {
             for (int i = 0; i < palabra.length(); i++) {

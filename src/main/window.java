@@ -339,8 +339,7 @@ public class window extends JFrame {
                 if (abrio_correcto = true){
                     Analizador analizar;
                     if(txtArchivoASM.getText().compareTo("") !=0){
-                        analizar = new Analizador(lineas);
-                        analizar.analizaArchivo();
+
                     } else {
                         JOptionPane.showMessageDialog(null,"Aun no haz Seleccionado  ningun archivo");
                     }
@@ -358,7 +357,7 @@ public class window extends JFrame {
         ActionListener action = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Analizador.btnSiguiente();
+
             }
         };
 

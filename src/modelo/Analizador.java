@@ -24,6 +24,7 @@ public class Analizador {
 
         // Separa el documento palabra por palabra
         // Agregandolo a un arraylist (lineas)
+
         for(int i = 0; i<lineas.size();i++) {
             if(palabra !="") {
                 palabras.add(new ValidarT(palabra));
@@ -183,6 +184,7 @@ public class Analizador {
             i++;
         }
         window.txtSeparacion.setText(pag);
+        window.txtIdentificacion.setText(pag);
 
     }
 
