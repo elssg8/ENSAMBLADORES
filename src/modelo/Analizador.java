@@ -184,7 +184,7 @@ public class Analizador {
             i++;
         }
         window.txtSeparacion.setText(pag);
-        window.txtIdentificacion.setText(pag);
+        //window.txtIdentificacion.setText(pag);
 
     }
 

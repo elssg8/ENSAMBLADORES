@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import modelo.Analizador;
+import modelo.Fase02;
 
 public class window extends JFrame {
     private JPanel panel;
@@ -337,8 +338,10 @@ public class window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (abrio_correcto = true){
-                    Analizador analizar;
+                    Fase02 fase02;
                     if(txtArchivoASM.getText().compareTo("") !=0){
+                        fase02 = new Fase02(lineas);
+                        fase02.analizaArchivoF02();
 
                     } else {
                         JOptionPane.showMessageDialog(null,"Aun no haz Seleccionado  ningun archivo");
@@ -357,6 +360,7 @@ public class window extends JFrame {
         ActionListener action = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Fase02.btnSiguiente();
 
             }
         };
@@ -374,7 +378,7 @@ public class window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Analizador.btnAtras();
+                Fase02.btnAtras();
             }
         };
 
